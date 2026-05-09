@@ -1,6 +1,6 @@
 "use client";
 
-import { use } from "react";
+import { use, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -8,15 +8,37 @@ import {
   ExternalLink,
   Lightbulb,
   MapPin,
-  Clock,
   Users,
   Navigation,
   ChevronDown,
   ChevronUp,
+  ShoppingBag,
+  Utensils,
+  Sparkles,
 } from "lucide-react";
-import { itinerary, MAIN_MAP_EMBED } from "@/data/itinerary";
+import { itinerary, type FreeDayOption } from "@/data/itinerary";
 import { notFound } from "next/navigation";
-import { useState } from "react";
+
+const categoryMeta: Record<
+  FreeDayOption["category"],
+  { label: string; icon: React.ReactNode; color: string }
+> = {
+  attraction: {
+    label: "אטרקציות ופעילויות",
+    icon: <Sparkles className="w-5 h-5" />,
+    color: "text-purple-600",
+  },
+  shopping: {
+    label: "קניונים וקניות",
+    icon: <ShoppingBag className="w-5 h-5" />,
+    color: "text-blue-600",
+  },
+  restaurant: {
+    label: "מסעדות ואוכל",
+    icon: <Utensils className="w-5 h-5" />,
+    color: "text-orange-600",
+  },
+};
 
 export default function DayPage({
   params,
@@ -31,17 +53,28 @@ export default function DayPage({
 
   if (!day) return notFound();
 
-  const toggleTimeline = (idx: number) => {
+  const toggleTimeline = (idx: number) =>
     setExpandedTimeline((prev) =>
       prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
     );
-  };
 
-  const toggleOption = (idx: number) => {
+  const toggleOption = (idx: number) =>
     setExpandedOptions((prev) =>
       prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
     );
-  };
+
+  const groupedOptions = day.freeDayOptions
+    ? (["attraction", "shopping", "restaurant"] as const).reduce(
+        (acc, cat) => {
+          const items = day.freeDayOptions!.filter((o) => o.category === cat);
+          if (items.length) acc.push({ category: cat, items });
+          return acc;
+        },
+        [] as { category: FreeDayOption["category"]; items: FreeDayOption[] }[]
+      )
+    : [];
+
+  let globalOptionIdx = 0;
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
@@ -73,7 +106,6 @@ export default function DayPage({
       {/* Timeline */}
       <div className="relative">
         <div className="absolute top-0 bottom-0 right-6 w-0.5 bg-slate-200" />
-
         <div className="space-y-0">
           {day.timeline.map((item, i) => (
             <motion.div
@@ -83,14 +115,12 @@ export default function DayPage({
               transition={{ delay: i * 0.08 }}
               className="relative flex gap-4 pb-6"
             >
-              {/* Timeline dot */}
               <div className="flex-shrink-0 w-12 flex flex-col items-center">
                 <div className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-xl z-10 border-2 border-slate-100">
                   {item.icon}
                 </div>
               </div>
 
-              {/* Content */}
               <div className="flex-1 bg-white rounded-2xl shadow-sm overflow-hidden">
                 <button
                   onClick={() => item.details && toggleTimeline(i)}
@@ -116,7 +146,6 @@ export default function DayPage({
                   </p>
                 </button>
 
-                {/* Expanded details */}
                 {item.details && expandedTimeline.includes(i) && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
@@ -129,45 +158,46 @@ export default function DayPage({
                   </motion.div>
                 )}
 
-                {/* Links */}
-                <div className="flex items-center gap-3 px-4 pb-3">
-                  {item.link && (
-                    <a
-                      href={item.link}
-                      target={
-                        item.link.startsWith("http") ? "_blank" : undefined
-                      }
-                      rel={
-                        item.link.startsWith("http")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                      className="inline-flex items-center gap-1 text-xs text-aqua hover:underline"
-                    >
-                      <ExternalLink className="w-3 h-3" />
-                      {item.linkLabel || "מידע נוסף"}
-                    </a>
-                  )}
-                  {item.mapQuery && (
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs text-emerald-600 hover:underline"
-                    >
-                      <Navigation className="w-3 h-3" />
-                      נווט לכאן
-                    </a>
-                  )}
-                </div>
+                {(item.link || item.mapQuery) && (
+                  <div className="flex items-center gap-3 px-4 pb-3">
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target={
+                          item.link.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          item.link.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                        className="inline-flex items-center gap-1 text-xs text-aqua hover:underline"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        {item.linkLabel || "מידע נוסף"}
+                      </a>
+                    )}
+                    {item.mapQuery && (
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs text-emerald-600 hover:underline"
+                      >
+                        <Navigation className="w-3 h-3" />
+                        נווט לכאן
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Free day options (Day 4) */}
-      {day.freeDayOptions && day.freeDayOptions.length > 0 && (
+      {/* Free day options grouped by category */}
+      {groupedOptions.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -179,97 +209,108 @@ export default function DayPage({
             מקומות מומלצים ליום החופשי
           </h2>
 
-          <div className="space-y-3">
-            {day.freeDayOptions.map((option, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="bg-white rounded-2xl shadow-sm overflow-hidden"
-              >
-                <button
-                  onClick={() => toggleOption(idx)}
-                  className="w-full text-right p-4 flex items-start gap-3"
+          {groupedOptions.map((group) => {
+            const meta = categoryMeta[group.category];
+            return (
+              <div key={group.category} className="mb-6">
+                <h3
+                  className={`text-base font-bold mb-3 flex items-center gap-2 ${meta.color}`}
                 >
-                  <span className="text-3xl flex-shrink-0">{option.icon}</span>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-slate-800">{option.name}</h3>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      {option.nameEn}
-                    </p>
-                    {!expandedOptions.includes(idx) && (
-                      <p className="text-sm text-slate-500 mt-1 line-clamp-2">
-                        {option.description}
-                      </p>
-                    )}
-                  </div>
-                  <span className="flex-shrink-0 mt-1">
-                    {expandedOptions.includes(idx) ? (
-                      <ChevronUp className="w-5 h-5 text-slate-400" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-slate-400" />
-                    )}
-                  </span>
-                </button>
-
-                {expandedOptions.includes(idx) && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    className="px-4 pb-4 border-t border-slate-100"
-                  >
-                    <p className="text-sm text-slate-600 mt-3 leading-relaxed">
-                      {option.description}
-                    </p>
-
-                    <div className="mt-3 space-y-2">
-                      <div className="flex items-center gap-2 text-xs text-slate-500">
-                        <Users className="w-3.5 h-3.5" />
-                        <span>גילאים: {option.ages}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs text-slate-500">
-                        <MapPin className="w-3.5 h-3.5" />
-                        <span>{option.address}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-3 mt-3">
-                      {option.link && (
-                        <a
-                          href={option.link}
-                          target={
-                            option.link.startsWith("http")
-                              ? "_blank"
-                              : undefined
-                          }
-                          rel={
-                            option.link.startsWith("http")
-                              ? "noopener noreferrer"
-                              : undefined
-                          }
-                          className="inline-flex items-center gap-1.5 text-xs bg-aqua-light text-aqua px-3 py-1.5 rounded-full font-medium hover:bg-aqua hover:text-white transition-colors"
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          אתר רשמי
-                        </a>
-                      )}
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(option.mapQuery)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs bg-emerald-50 text-emerald-600 px-3 py-1.5 rounded-full font-medium hover:bg-emerald-600 hover:text-white transition-colors"
+                  {meta.icon}
+                  {meta.label}
+                </h3>
+                <div className="space-y-2">
+                  {group.items.map((option) => {
+                    const idx = globalOptionIdx++;
+                    return (
+                      <motion.div
+                        key={option.name}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="bg-white rounded-2xl shadow-sm overflow-hidden"
                       >
-                        <Navigation className="w-3 h-3" />
-                        נווט לכאן
-                      </a>
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
+                        <button
+                          onClick={() => toggleOption(idx)}
+                          className="w-full text-right p-4 flex items-start gap-3"
+                        >
+                          <span className="text-2xl flex-shrink-0 mt-0.5">
+                            {option.icon}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-bold text-slate-800 text-sm">
+                              {option.name}
+                            </h4>
+                            <p className="text-xs text-slate-400">
+                              {option.nameEn}
+                            </p>
+                            {!expandedOptions.includes(idx) && (
+                              <p className="text-xs text-slate-500 mt-1 line-clamp-1">
+                                {option.description}
+                              </p>
+                            )}
+                          </div>
+                          <span className="flex-shrink-0 mt-1">
+                            {expandedOptions.includes(idx) ? (
+                              <ChevronUp className="w-4 h-4 text-slate-400" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-slate-400" />
+                            )}
+                          </span>
+                        </button>
+
+                        {expandedOptions.includes(idx) && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            className="px-4 pb-4 border-t border-slate-100"
+                          >
+                            <p className="text-sm text-slate-600 mt-3 leading-relaxed">
+                              {option.description}
+                            </p>
+                            <div className="mt-3 flex items-center gap-2 text-xs text-slate-500">
+                              <MapPin className="w-3.5 h-3.5" />
+                              <span>{option.address}</span>
+                            </div>
+                            <div className="flex items-center gap-3 mt-3">
+                              {option.link && (
+                                <a
+                                  href={option.link}
+                                  target={
+                                    option.link.startsWith("http")
+                                      ? "_blank"
+                                      : undefined
+                                  }
+                                  rel={
+                                    option.link.startsWith("http")
+                                      ? "noopener noreferrer"
+                                      : undefined
+                                  }
+                                  className="inline-flex items-center gap-1.5 text-xs bg-aqua-light text-aqua px-3 py-1.5 rounded-full font-medium hover:bg-aqua hover:text-white transition-colors"
+                                >
+                                  <ExternalLink className="w-3 h-3" />
+                                  אתר רשמי
+                                </a>
+                              )}
+                              <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(option.mapQuery)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-xs bg-emerald-50 text-emerald-600 px-3 py-1.5 rounded-full font-medium hover:bg-emerald-600 hover:text-white transition-colors"
+                              >
+                                <Navigation className="w-3 h-3" />
+                                נווט לכאן
+                              </a>
+                            </div>
+                          </motion.div>
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
         </motion.div>
       )}
 
@@ -286,7 +327,7 @@ export default function DayPage({
         </h2>
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
           <iframe
-            src={MAIN_MAP_EMBED}
+            src={day.mapEmbedUrl}
             className="w-full h-[350px] md:h-[450px] border-0"
             title={`מפת יום ${day.id} – ${day.title}`}
             loading="lazy"
@@ -295,7 +336,7 @@ export default function DayPage({
         </div>
         <div className="mt-2 text-center">
           <a
-            href={`https://www.google.com/maps/d/viewer?mid=1wg92j3t2nK4ztN_tVE--oFfclrVWRh8`}
+            href="https://www.google.com/maps/d/viewer?mid=1wg92j3t2nK4ztN_tVE--oFfclrVWRh8"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-xs text-aqua hover:underline"
