@@ -84,43 +84,95 @@ export interface WaterPalace {
 }
 
 const HOTEL_BASE = "https://www.aquapalacehotel.cz";
+const PARK_BASE = "https://www.aquapalace.cz";
+const PARK_WATER = `${PARK_BASE}/en/sekce/vodni_svet`;
+const PARK_SAUNA = `${PARK_BASE}/en/sekce/saunovy_svet`;
 
 export const waterParkPalaces: WaterPalace[] = [
   {
-    name: "Palace of Adventures",
+    name: "Adventure Palace – Raiffun Zone",
     nameHe: "ארמון ההרפתקאות",
     icon: "🎢",
     description:
-      "מגלשות אדרנלין, מנהרות חושך, אפקטי אור וסאונד, ומגלשת הטירוף – הארוכה בצ׳כיה!",
-    link: `${HOTEL_BASE}/en/water-world`,
+      "12 מגלשות אדרנלין כולל הארוכה ביותר בצ׳כיה (350+ מ׳)! מנהרות חושך, אפקטי אור וסאונד, ספייסבאול ונהר פראי.",
+    link: PARK_WATER,
     attractions: [
       {
-        name: "Magic Tube",
-        nameHe: "מגלשת הקסם – VR",
-        description: "מגלשה עם מציאות מדומה! חוויית Space או Heaven תוך כדי גלישה. לראשונה בצ׳כיה!",
-        imageUrl: `${HOTEL_BASE}/img/_/water-park/magic-tube.jpg`,
-        link: `${HOTEL_BASE}/en/water-world`,
+        name: "Crazy Tube",
+        nameHe: "מגלשת הטירוף (350+ מ׳!)",
+        description: "המגלשה הארוכה ביותר בצ׳כיה! יותר מ-350 מטר של גלישה פרועה",
+        imageUrl: `${PARK_BASE}/crazy-tube`,
+        link: `${PARK_BASE}/crazy-tube`,
       },
       {
         name: "Spacebowl",
         nameHe: "ספייסבאול",
         description: "סחרור מהיר בצורת קערה ענקית – אדרנלין טהור!",
-        imageUrl: `${HOTEL_BASE}/img/_/water-park/spacebowl.jpg`,
-        link: `${HOTEL_BASE}/en/water-world`,
+        imageUrl: `${PARK_BASE}/spacebowl`,
+        link: `${PARK_BASE}/spacebowl`,
       },
       {
-        name: "Fast River",
-        nameHe: "נהר מהיר (250 מ׳)",
-        description: "האטרקציה הפופולרית ביותר! נהר פראי באורך 250 מ׳ שעובר דרך כל הפארק",
-        imageUrl: `${HOTEL_BASE}/img/_/water-park/fast-river.jpg`,
-        link: `${HOTEL_BASE}/en/water-world`,
+        name: "Kamikaze",
+        nameHe: "קמיקזה",
+        description: "מגלשה תלולה במיוחד – ירידה חופשית במהירות! לאמיצים בלבד",
+        imageUrl: `${PARK_BASE}/kamikadze`,
+        link: `${PARK_BASE}/kamikadze`,
       },
       {
-        name: "Toboggans",
-        nameHe: "12 מגלשות (עד 250 מ׳)",
-        description: "מגלשות שקטות ומגלשות אדרנלין, מנהרות חושך ואור, גלישה על טבעות",
-        imageUrl: `${HOTEL_BASE}/img/_/water-park/toboggans.jpg`,
-        link: `${HOTEL_BASE}/en/water-world`,
+        name: "Magic Tube",
+        nameHe: "מגלשת הקסם – VR",
+        description: "מגלשה עם מציאות מדומה! חוויית Space או Heaven תוך כדי גלישה. לראשונה בצ׳כיה!",
+        imageUrl: `${PARK_BASE}/magic-tube`,
+        link: `${PARK_BASE}/magic-tube`,
+      },
+      {
+        name: "Orange Slide",
+        nameHe: "מגלשה כתומה",
+        description: "מגלשה מהירה בצבע כתום – ירידה מסחררת!",
+        imageUrl: `${PARK_BASE}/skluzavka-oranzova`,
+        link: `${PARK_BASE}/skluzavka-oranzova`,
+      },
+      {
+        name: "Bodyslide – Raiffunslide",
+        nameHe: "בודי סלייד",
+        description: "מגלשת גוף מהירה – גולשים בלי טבעת!",
+        imageUrl: `${PARK_BASE}/bodyslide-raiffunslide`,
+        link: `${PARK_BASE}/bodyslide-raiffunslide`,
+      },
+      {
+        name: "Slavia Family Water Slide",
+        nameHe: "מגלשה משפחתית",
+        description: "מגלשה לכל המשפחה – אפשר לגלוש יחד על טבעת!",
+        imageUrl: `${PARK_BASE}/slavia-pojistovna-rodinny-tobogan`,
+        link: `${PARK_BASE}/slavia-pojistovna-rodinny-tobogan`,
+      },
+      {
+        name: "Canyon (Inland Wild River)",
+        nameHe: "קניון – נהר פראי פנימי",
+        description: "נהר פראי פנימי עם מערות, לגונות וספסלי מסאז׳",
+        imageUrl: `${PARK_BASE}/canyon-vnitrni-divoka-reka`,
+        link: `${PARK_BASE}/canyon-vnitrni-divoka-reka`,
+      },
+      {
+        name: "Blue Slides",
+        nameHe: "מגלשות כחולות",
+        description: "מגלשות מהירות בכחול – גלישה זוגית!",
+        imageUrl: `${PARK_BASE}/modre-skluzavky`,
+        link: `${PARK_BASE}/modre-skluzavky`,
+      },
+      {
+        name: "Twister",
+        nameHe: "טוויסטר",
+        description: "מגלשה מסתובבת עם סיבובים מטורפים!",
+        imageUrl: `${PARK_BASE}/twister-tobogan`,
+        link: `${PARK_BASE}/twister-tobogan`,
+      },
+      {
+        name: "Magic Trio",
+        nameHe: "מג׳יק טריו",
+        description: "שלוש מגלשות זו לצד זו – מי מגיע ראשון?",
+        imageUrl: `${PARK_BASE}/magic-trio`,
+        link: `${PARK_BASE}/magic-trio`,
       },
     ],
   },
@@ -129,29 +181,64 @@ export const waterParkPalaces: WaterPalace[] = [
     nameHe: "ארמון האוצרות",
     icon: "🏴‍☠️",
     description:
-      "ספינת פיראטים, בריכת גלים, אזור ילדים עם מגלשות ובריכות רדודות",
-    link: `${HOTEL_BASE}/en/water-world`,
+      "ספינת פיראטים, בריכת גלים, מופע לייזר ייחודי, אזור VR, תותחי מים ואזור ילדים מושלם!",
+    link: PARK_WATER,
     attractions: [
       {
         name: "Pirate Ship",
         nameHe: "ספינת פיראטים",
-        description: "שרידי ספינה ומפלצות ים – עולם הרפתקאות לילדים!",
-        imageUrl: `${HOTEL_BASE}/img/_/water-park/pirate-ship.jpg`,
-        link: `${HOTEL_BASE}/en/water-world`,
+        description: "שרידי ספינה ומפלצות ים – עולם הרפתקאות קסום!",
+        imageUrl: `${PARK_BASE}/piratska-lod`,
+        link: `${PARK_BASE}/piratska-lod`,
       },
       {
-        name: "Wave Pool",
-        nameHe: "בריכת גלים",
-        description: "גלים מלאכותיים כמו בים – כיף לכל הגילאים!",
-        imageUrl: `${HOTEL_BASE}/img/_/water-park/wave-pool.jpg`,
-        link: `${HOTEL_BASE}/en/water-world`,
+        name: "Sea Surf",
+        nameHe: "גלי ים (בריכת גלים)",
+        description: "גלים מלאכותיים כמו בים הקריבי – כיף לכל הגילאים!",
+        imageUrl: `${PARK_BASE}/morske-vlnobiti`,
+        link: `${PARK_BASE}/morske-vlnobiti`,
       },
       {
-        name: "Kids Water Play",
-        nameHe: "אזור ילדים",
-        description: "בריכת פעוטות, מגלשות ילדים, בריכה רדודה ומשחקי מים",
-        imageUrl: `${HOTEL_BASE}/img/_/water-park/kids-area.jpg`,
-        link: `${HOTEL_BASE}/en/water-world`,
+        name: "Laser Show",
+        nameHe: "מופע לייזר",
+        description: "מופע לייזר ייחודי שלא תמצאו בשום מקום אחר!",
+        imageUrl: `${PARK_BASE}/laser-show`,
+        link: `${PARK_BASE}/laser-show`,
+      },
+      {
+        name: "Water Cannons",
+        nameHe: "תותחי מים",
+        description: "תותחי מים לילדים – קרב מים מטורף!",
+        imageUrl: `${PARK_BASE}/vodni-dela`,
+        link: `${PARK_BASE}/vodni-dela`,
+      },
+      {
+        name: "VR Avatar Zone",
+        nameHe: "אזור VR אווטאר",
+        description: "חוויית מציאות מדומה תת-ימית!",
+        imageUrl: `${PARK_BASE}/vr-avatar-zone`,
+        link: `${PARK_BASE}/vr-avatar-zone`,
+      },
+      {
+        name: "Toddler Splash Pool",
+        nameHe: "בריכת פעוטות",
+        description: "מים רדודים ובטוחים לפעוטות – משחקי מים עדינים",
+        imageUrl: `${PARK_BASE}/detske-brouzdaliste-pro-nejmensi`,
+        link: `${PARK_BASE}/detske-brouzdaliste-pro-nejmensi`,
+      },
+      {
+        name: "Children's Paradise by the Lighthouse",
+        nameHe: "גן עדן לילדים (ליד המגדלור)",
+        description: "מתחם משחקי מים לילדים עם מגלשות ומתזים",
+        imageUrl: `${PARK_BASE}/detsky-raj-u-majaku`,
+        link: `${PARK_BASE}/detsky-raj-u-majaku`,
+      },
+      {
+        name: "Massage Water Bench",
+        nameHe: "ספסל מסאז׳ מים",
+        description: "ספסלי מסאז׳ במים – הרפיה מושלמת!",
+        imageUrl: `${PARK_BASE}/masazni-vodni-lavice`,
+        link: `${PARK_BASE}/masazni-vodni-lavice`,
       },
     ],
   },
@@ -160,22 +247,36 @@ export const waterParkPalaces: WaterPalace[] = [
     nameHe: "ארמון הרגיעה",
     icon: "🧘",
     description:
-      "בריכת שחייה שקטה, ג׳קוזים, ספות מסאז׳ וטרסת מנוחה",
-    link: `${HOTEL_BASE}/en/water-world`,
+      "בריכת שחייה שקטה, ג׳קוזים מדורגים ענקיים (37°C!), נהר איטי, שובר גלים וטרסת מנוחה",
+    link: PARK_WATER,
     attractions: [
       {
-        name: "Whirlpools",
-        nameHe: "ג׳קוזים ומסאז׳",
-        description: "ג׳קוזים מדורגים, ספסלי מסאז׳ ואזור מנוחה",
-        imageUrl: `${HOTEL_BASE}/img/_/water-park/whirlpools.jpg`,
-        link: `${HOTEL_BASE}/en/water-world`,
+        name: "Giant Cascading Whirlpools",
+        nameHe: "ג׳קוזים מדורגים ענקיים",
+        description: "ג׳קוזים מדורגים עם מים ב-37°C, סילוני מסאז׳ ונוף על הפארק",
+        imageUrl: `${PARK_BASE}/obri-kaskadovite-virivky`,
+        link: `${PARK_BASE}/obri-kaskadovite-virivky`,
+      },
+      {
+        name: "Lazy River",
+        nameHe: "נהר שקט",
+        description: "נהר איטי ורגוע – פשוט נסחפים ונהנים",
+        imageUrl: `${PARK_BASE}/pomala-reka`,
+        link: `${PARK_BASE}/pomala-reka`,
+      },
+      {
+        name: "Breakwater",
+        nameHe: "שובר גלים",
+        description: "אזור גלים רגועים לשחייה נעימה",
+        imageUrl: `${PARK_BASE}/vlnolam`,
+        link: `${PARK_BASE}/vlnolam`,
       },
       {
         name: "Swimming Pool",
         nameHe: "בריכת שחייה",
-        description: "בריכה שקטה ורגועה לשחייה מהנה",
-        imageUrl: `${HOTEL_BASE}/img/_/water-park/pool.jpg`,
-        link: `${HOTEL_BASE}/en/water-world`,
+        description: "בריכה שקטה ורגועה לשחייה ספורטיבית",
+        imageUrl: `${PARK_BASE}/plavecky-bazen`,
+        link: `${PARK_BASE}/plavecky-bazen`,
       },
     ],
   },
@@ -183,35 +284,51 @@ export const waterParkPalaces: WaterPalace[] = [
 
 export const waterParkExtras: WaterAttraction[] = [
   {
+    name: "Wild River (Outdoor)",
+    nameHe: "נהר פראי חיצוני (450 מ׳!)",
+    description:
+      "האטרקציה הכי פופולרית! נהר פראי באורך 450 מ׳ שעובר דרך כל הפארק – פנים וחוץ. נפתח באפריל-מאי.",
+    imageUrl: PARK_WATER,
+    link: PARK_WATER,
+  },
+  {
     name: "Outdoor Zone",
     nameHe: "אזור חיצוני",
     description:
-      "בריכה חיצונית, נהר פראי חיצוני, ג׳קוזים בחוץ, טירה מתנפחת, Wipeout, סירות פגוש וגינת שיזוף. נפתח באפריל-מאי!",
-    imageUrl: `${HOTEL_BASE}/img/_/water-park/outdoor.jpg`,
-    link: `${HOTEL_BASE}/en/water-world`,
+      "בריכה חיצונית, ג׳קוזים בחוץ, טירה מתנפחת, Wipeout, סירות פגוש, מתקני ילדים וגינת שיזוף",
+    imageUrl: PARK_WATER,
+    link: PARK_WATER,
   },
   {
     name: "Coral Dome",
     nameHe: "כיפת האלמוגים",
     description:
-      "עולם תת-ימי עם דגים צבעוניים, כוכבי ים, קיפודי ים ואלמוגים. בריכה חמה (31°C!), חוף חולי ובר קוקטיילים קריביים",
-    imageUrl: `${HOTEL_BASE}/img/_/water-park/coral-dome.jpg`,
-    link: `${HOTEL_BASE}/en/water-world`,
+      "עולם תת-ימי עם דגים צבעוניים, כוכבי ים ואלמוגים. בריכה חמה (31°C!), חוף חולי ובר קוקטיילים",
+    imageUrl: PARK_WATER,
+    link: PARK_WATER,
   },
   {
     name: "Diving Pit",
     nameHe: "בור צלילה (8 מ׳!)",
     description:
       "הבור העמוק ביותר בצ׳כיה – 8 מטר! 3 רמות עומק עם מדריך מקצועי. חוויה לאמיצים!",
-    imageUrl: `${HOTEL_BASE}/img/_/water-park/diving.jpg`,
-    link: `${HOTEL_BASE}/en/water-world`,
+    imageUrl: PARK_WATER,
+    link: PARK_WATER,
   },
 ];
 
 export const waterParkHours = [
-  { day: "ראשון–חמישי", hours: "10:00–20:00" },
+  { day: "ראשון–רביעי", hours: "10:00–20:00" },
+  { day: "חמישי", hours: "10:00–22:00" },
   { day: "שישי–שבת", hours: "09:00–22:00" },
+  { day: "ראשון", hours: "09:00–20:00" },
 ];
+
+export const PARK_LINKS = {
+  waterWorld: PARK_WATER,
+  saunaWorld: PARK_SAUNA,
+  home: `${PARK_BASE}/en`,
+};
 
 export const saunaWorld = {
   description:

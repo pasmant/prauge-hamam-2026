@@ -24,6 +24,7 @@ import {
   hotelRestaurants,
   waterParkBars,
   wristbandInfo,
+  PARK_LINKS,
 } from "@/data/hotel";
 import { useState } from "react";
 
@@ -335,13 +336,13 @@ export default function HotelPage() {
           צלילה ועוד!
         </p>
         <a
-          href="https://www.aquapalacehotel.cz/en/water-world"
+          href={PARK_LINKS.waterWorld}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-aqua hover:underline text-sm mb-4"
         >
           <ExternalLink className="w-3.5 h-3.5" />
-          לכל הפרטים באתר הרשמי
+          לכל הפרטים באתר הפארק הרשמי
         </a>
 
         {/* Hours */}
@@ -550,13 +551,13 @@ export default function HotelPage() {
 
         <div className="mt-3">
           <a
-            href="https://www.aquapalacehotel.cz/en/aquapalace-prague-wellness-and-balneo"
+            href={PARK_LINKS.saunaWorld}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-aqua hover:underline text-sm"
           >
             <ExternalLink className="w-4 h-4" />
-            מידע נוסף באתר הרשמי
+            מידע נוסף באתר הפארק הרשמי
           </a>
         </div>
       </CollapsibleSection>
