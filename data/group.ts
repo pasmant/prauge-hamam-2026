@@ -8,8 +8,8 @@ export const groupInfo = {
 export const emergencyContacts = [
   {
     role: "מארגן ראשי",
-    name: "יוסף חמם",
-    phone: "+972-50-000-0000",
+    name: "תומר פסמן",
+    phone: "+972-50-490-4042",
     icon: "👤",
   },
   {
