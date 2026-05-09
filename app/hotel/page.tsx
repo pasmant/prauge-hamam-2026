@@ -42,6 +42,54 @@ function SectionTitle({
   );
 }
 
+function CollapsibleSection({
+  icon,
+  title,
+  defaultOpen = false,
+  gradient,
+  children,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  defaultOpen?: boolean;
+  gradient: string;
+  children: React.ReactNode;
+}) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="bg-white rounded-2xl shadow-sm overflow-hidden"
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full text-right ${gradient} p-4 text-white flex items-center justify-between`}
+      >
+        <div className="flex items-center gap-2">
+          {icon}
+          <h2 className="text-lg font-bold">{title}</h2>
+        </div>
+        {isOpen ? (
+          <ChevronUp className="w-5 h-5" />
+        ) : (
+          <ChevronDown className="w-5 h-5" />
+        )}
+      </button>
+      {isOpen && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          className="p-4"
+        >
+          {children}
+        </motion.div>
+      )}
+    </motion.div>
+  );
+}
+
 export default function HotelPage() {
   const [expandedPalace, setExpandedPalace] = useState<number | null>(0);
 
@@ -71,7 +119,7 @@ export default function HotelPage() {
             אתר המלון הרשמי
           </a>
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=Aquapalace+Hotel+Prague`}
+            href="https://www.google.com/maps/search/?api=1&query=Aquapalace+Hotel+Prague"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-emerald-600 hover:underline text-sm"
@@ -139,7 +187,7 @@ export default function HotelPage() {
         </div>
       </motion.div>
 
-      {/* Wristband / Chip — ABOVE water park */}
+      {/* Wristband / Chip */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -168,15 +216,118 @@ export default function HotelPage() {
         </div>
       </motion.div>
 
-      {/* Water Park */}
+      {/* ═══ Breakfast ═══ */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <SectionTitle
-          icon={<Waves className="w-7 h-7 text-cyan-500" />}
-        >
+        <SectionTitle icon={<span className="text-2xl">🥐</span>}>
+          ארוחת בוקר – {hotelInfo.breakfastInfo.restaurant}
+        </SectionTitle>
+        <div className="bg-white rounded-2xl p-5 shadow-sm">
+          <p className="text-sm text-slate-600 mb-2">
+            {hotelInfo.breakfastInfo.description}
+          </p>
+          <p className="text-sm text-aqua font-medium mb-3">
+            שעות: {hotelInfo.breakfastInfo.hours} | בסגנון בופה
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {hotelInfo.breakfastItems.map((item) => (
+              <span
+                key={item}
+                className="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-medium"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* ═══ Restaurants & Bars — collapsible ═══ */}
+      <CollapsibleSection
+        icon={<UtensilsCrossed className="w-6 h-6" />}
+        title="מסעדות ובארים"
+        defaultOpen={false}
+        gradient="bg-gradient-to-l from-orange-500 to-amber-500"
+      >
+        <h3 className="font-bold text-slate-700 mb-3">מסעדות ראשיות</h3>
+        <div className="space-y-3 mb-6">
+          {hotelRestaurants.map((restaurant) => (
+            <a
+              key={restaurant.name}
+              href={restaurant.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-slate-50 rounded-2xl p-4 hover:bg-orange-50 transition-colors"
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <h4 className="font-bold text-slate-800">
+                    {restaurant.nameHe}
+                  </h4>
+                  <span className="inline-block bg-orange-50 text-orange-600 text-xs px-2 py-0.5 rounded-full mt-1">
+                    {restaurant.type}
+                  </span>
+                </div>
+                {restaurant.isBreakfast && (
+                  <span className="bg-amber-100 text-amber-700 text-xs px-2 py-1 rounded-lg font-medium">
+                    🥐 ארוחת בוקר כאן
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-slate-600 mt-2">
+                {restaurant.description}
+              </p>
+              <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
+                <span className="flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  {restaurant.hours}
+                </span>
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3 h-3" />
+                  {restaurant.location}
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <h3 className="font-bold text-slate-700 mb-3 flex items-center gap-2">
+          <Coffee className="w-4 h-4" />
+          בארים וקפה בפארק המים
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+          {waterParkBars.map((bar) => (
+            <div key={bar.name} className="bg-slate-50 rounded-xl p-3">
+              <p className="font-bold text-xs text-slate-800">{bar.nameHe}</p>
+              <p className="text-[11px] text-slate-400">{bar.location}</p>
+              <p className="text-xs text-slate-500 mt-1">{bar.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-3">
+          <a
+            href="https://www.aquapalacehotel.cz/en/restaurants-bars"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-aqua hover:underline text-sm"
+          >
+            <ExternalLink className="w-4 h-4" />
+            כל המסעדות באתר הרשמי
+          </a>
+        </div>
+      </CollapsibleSection>
+
+      {/* ═══ Water Park ═══ */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        <SectionTitle icon={<Waves className="w-7 h-7 text-cyan-500" />}>
           פארק המים
         </SectionTitle>
         <p className="text-slate-500 text-sm mb-2">
@@ -313,11 +464,15 @@ export default function HotelPage() {
             </div>
           ))}
         </div>
+      </motion.div>
 
-        {/* Extra attractions */}
-        <h3 className="font-bold text-slate-700 mt-6 mb-3">
-          אטרקציות נוספות
-        </h3>
+      {/* ═══ Extra attractions — collapsible ═══ */}
+      <CollapsibleSection
+        icon={<span className="text-xl">🌊</span>}
+        title="אטרקציות נוספות בפארק"
+        defaultOpen={false}
+        gradient="bg-gradient-to-l from-cyan-600 to-teal-500"
+      >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {waterParkExtras.map((attr) => (
             <a
@@ -325,7 +480,7 @@ export default function HotelPage() {
               href={attr.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow group"
+              className="bg-slate-50 rounded-2xl overflow-hidden hover:bg-cyan-50 transition-colors group"
             >
               <div className="h-24 bg-gradient-to-br from-cyan-100 to-aqua-light flex items-center justify-center overflow-hidden">
                 <img
@@ -351,17 +506,15 @@ export default function HotelPage() {
             </a>
           ))}
         </div>
-      </motion.div>
+      </CollapsibleSection>
 
-      {/* Sauna World */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+      {/* ═══ Sauna World — collapsible ═══ */}
+      <CollapsibleSection
+        icon={<span className="text-xl">🧖</span>}
+        title="עולם הסאונות"
+        defaultOpen={false}
+        gradient="bg-gradient-to-l from-amber-600 to-orange-500"
       >
-        <SectionTitle icon={<span className="text-2xl">🧖</span>}>
-          עולם הסאונות
-        </SectionTitle>
         <p className="text-slate-500 text-sm mb-4">{saunaWorld.description}</p>
 
         <div className="bg-amber-50 rounded-2xl p-4 mb-4">
@@ -378,10 +531,7 @@ export default function HotelPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {saunaWorld.areas.map((area) => (
-            <div
-              key={area.name}
-              className="bg-white rounded-2xl p-4 shadow-sm"
-            >
+            <div key={area.name} className="bg-slate-50 rounded-2xl p-4">
               <h4 className="font-bold text-slate-700 mb-2">{area.name}</h4>
               <ul className="space-y-1">
                 {area.items.map((item) => (
@@ -409,122 +559,7 @@ export default function HotelPage() {
             מידע נוסף באתר הרשמי
           </a>
         </div>
-      </motion.div>
-
-      {/* Breakfast */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-      >
-        <SectionTitle icon={<span className="text-2xl">🥐</span>}>
-          ארוחת בוקר – {hotelInfo.breakfastInfo.restaurant}
-        </SectionTitle>
-        <div className="bg-white rounded-2xl p-5 shadow-sm">
-          <p className="text-sm text-slate-600 mb-2">
-            {hotelInfo.breakfastInfo.description}
-          </p>
-          <p className="text-sm text-aqua font-medium mb-3">
-            שעות: {hotelInfo.breakfastInfo.hours} | בסגנון בופה
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {hotelInfo.breakfastItems.map((item) => (
-              <span
-                key={item}
-                className="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-medium"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Hotel Restaurants */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-      >
-        <SectionTitle
-          icon={<UtensilsCrossed className="w-7 h-7 text-orange-500" />}
-        >
-          מסעדות ובארים
-        </SectionTitle>
-
-        <h3 className="font-bold text-slate-700 mb-3">מסעדות ראשיות</h3>
-        <div className="space-y-3 mb-6">
-          {hotelRestaurants.map((restaurant) => (
-            <a
-              key={restaurant.name}
-              href={restaurant.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <h4 className="font-bold text-slate-800">
-                    {restaurant.nameHe}
-                  </h4>
-                  <span className="inline-block bg-orange-50 text-orange-600 text-xs px-2 py-0.5 rounded-full mt-1">
-                    {restaurant.type}
-                  </span>
-                </div>
-                {restaurant.isBreakfast && (
-                  <span className="bg-amber-100 text-amber-700 text-xs px-2 py-1 rounded-lg font-medium">
-                    🥐 ארוחת בוקר כאן
-                  </span>
-                )}
-              </div>
-              <p className="text-sm text-slate-600 mt-2">
-                {restaurant.description}
-              </p>
-              <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
-                <span className="flex items-center gap-1">
-                  <Clock className="w-3 h-3" />
-                  {restaurant.hours}
-                </span>
-                <span className="flex items-center gap-1">
-                  <MapPin className="w-3 h-3" />
-                  {restaurant.location}
-                </span>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        <h3 className="font-bold text-slate-700 mb-3 flex items-center gap-2">
-          <Coffee className="w-4 h-4" />
-          בארים וקפה בפארק המים
-        </h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-          {waterParkBars.map((bar) => (
-            <div
-              key={bar.name}
-              className="bg-white rounded-xl p-3 shadow-sm"
-            >
-              <p className="font-bold text-xs text-slate-800">
-                {bar.nameHe}
-              </p>
-              <p className="text-[11px] text-slate-400">{bar.location}</p>
-              <p className="text-xs text-slate-500 mt-1">{bar.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-3">
-          <a
-            href="https://www.aquapalacehotel.cz/en/restaurants-bars"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-aqua hover:underline text-sm"
-          >
-            <ExternalLink className="w-4 h-4" />
-            כל המסעדות באתר הרשמי
-          </a>
-        </div>
-      </motion.div>
+      </CollapsibleSection>
     </div>
   );
 }
