@@ -34,8 +34,12 @@ export interface DayPlan {
   freeDayOptions?: FreeDayOption[];
 }
 
-const MAP_BASE =
-  "https://www.google.com/maps/d/embed?mid=1wg92j3t2nK4ztN_tVE--oFfclrVWRh8&ehbc=2E312F";
+const MAP_MID = "1wg92j3t2nK4ztN_tVE--oFfclrVWRh8";
+const MAP_BASE = `https://www.google.com/maps/d/embed?mid=${MAP_MID}&ehbc=2E312F`;
+
+function dayMapUrl(lat: number, lng: number, zoom: number) {
+  return `${MAP_BASE}&ll=${lat},${lng}&z=${zoom}`;
+}
 
 export const MAIN_MAP_EMBED = MAP_BASE;
 
@@ -48,7 +52,7 @@ export const itinerary: DayPlan[] = [
     subtitle: "יום ראשון בפראג!",
     emoji: "✈️",
     color: "from-blue-500 to-cyan-400",
-    mapEmbedUrl: MAP_BASE,
+    mapEmbedUrl: dayMapUrl(50.056, 14.42, 11),
     timeline: [
       {
         time: "10:15",
@@ -132,7 +136,7 @@ export const itinerary: DayPlan[] = [
     subtitle: "יום סיור בעיר העתיקה",
     emoji: "🏰",
     color: "from-amber-500 to-orange-400",
-    mapEmbedUrl: MAP_BASE,
+    mapEmbedUrl: dayMapUrl(50.083, 14.421, 14),
     timeline: [
       {
         time: "07:00",
@@ -238,7 +242,7 @@ export const itinerary: DayPlan[] = [
     subtitle: "טיול בגבהים עם נופים עוצרי נשימה",
     emoji: "🏔️",
     color: "from-green-500 to-emerald-400",
-    mapEmbedUrl: MAP_BASE,
+    mapEmbedUrl: dayMapUrl(50.086, 14.403, 14),
     timeline: [
       {
         time: "07:00",
@@ -340,7 +344,7 @@ export const itinerary: DayPlan[] = [
     subtitle: "בחרו מה שבא לכם – הכל קרוב למלון!",
     emoji: "🎉",
     color: "from-purple-500 to-pink-400",
-    mapEmbedUrl: MAP_BASE,
+    mapEmbedUrl: dayMapUrl(50.003, 14.567, 14),
     timeline: [
       {
         time: "07:00",
@@ -519,7 +523,7 @@ export const itinerary: DayPlan[] = [
     subtitle: "להתראות פראג!",
     emoji: "👋",
     color: "from-rose-500 to-red-400",
-    mapEmbedUrl: MAP_BASE,
+    mapEmbedUrl: dayMapUrl(50.056, 14.42, 11),
     timeline: [
       {
         time: "07:00",
