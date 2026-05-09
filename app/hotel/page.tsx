@@ -208,6 +208,32 @@ export default function HotelPage() {
           </div>
         </div>
 
+        {/* Water park map */}
+        <div className="bg-white rounded-2xl shadow-sm overflow-hidden mb-6">
+          <div className="bg-gradient-to-l from-cyan to-aqua p-3 text-white flex items-center gap-2">
+            <MapPin className="w-5 h-5" />
+            <h3 className="font-bold text-sm">מפת פארק המים</h3>
+          </div>
+          <a
+            href="/mapa-aquapark.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <div className="p-4 text-center">
+              <div className="bg-cyan-50 rounded-xl p-6 flex flex-col items-center gap-3">
+                <span className="text-4xl">🗺️</span>
+                <p className="text-sm font-bold text-slate-700">
+                  לחצו לפתיחת מפת הפארק (PDF)
+                </p>
+                <p className="text-xs text-slate-500">
+                  מפה מלאה עם כל המגלשות, הבריכות, המסעדות והשירותים
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+
         {/* Palaces – collapsible */}
         <div className="space-y-3">
           {waterParkPalaces.map((palace, pIdx) => (
