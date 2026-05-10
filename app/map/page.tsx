@@ -57,7 +57,7 @@ export default function MapPage() {
         <iframe
           src={MAIN_MAP_EMBED}
           className="w-full h-[60vh] md:h-[70vh] border-0"
-          title="מפת הטיול – משפחת חמם פראג 2026"
+          title="מפת הטיול – פראג 2026"
           loading="lazy"
           allowFullScreen
         />

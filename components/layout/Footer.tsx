@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
               <span>🇨🇿</span>
-              משפחת חמם – פראג 2026
+              טיול משפחתי – פראג 2026
             </h3>
             <p className="text-slate-400 text-sm">
               הטיול המשפחתי | 9–13 ביוני 2026
@@ -60,7 +60,7 @@ export function Footer() {
 
         <div className="mt-8 pt-4 border-t border-slate-800 text-center text-sm text-slate-500">
           <p className="flex items-center justify-center gap-1">
-            נבנה עם <Heart className="w-3 h-3 text-red-400 fill-red-400" /> למשפחת חמם
+            נבנה עם <Heart className="w-3 h-3 text-red-400 fill-red-400" /> לטיול המשפחתי
           </p>
         </div>
       </div>

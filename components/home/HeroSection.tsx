@@ -21,8 +21,7 @@ export function HeroSection() {
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4 leading-tight">
             <span className="block">הטיול המשפחתי</span>
-            <span className="block text-yellow-300">של משפחת חמם</span>
-            <span className="block text-3xl md:text-5xl mt-2">לפראג 2026</span>
+            <span className="block text-yellow-300">לפראג 2026</span>
           </h1>
         </motion.div>
 

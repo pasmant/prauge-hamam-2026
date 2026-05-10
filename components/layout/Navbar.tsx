@@ -44,7 +44,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
             <span className="text-xl md:text-2xl">🇨🇿</span>
             <span className="font-bold text-base md:text-lg bg-gradient-to-l from-aqua to-cyan bg-clip-text text-transparent">
-              משפחת חמם – פראג 2026
+              טיול משפחתי – פראג 2026
             </span>
           </Link>
 

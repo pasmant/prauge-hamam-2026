@@ -18,11 +18,11 @@ const assistant = Assistant({
 });
 
 export const metadata: Metadata = {
-  title: "משפחת חמם – פראג 2026",
-  description: "הטיול המשפחתי של משפחת חמם לפראג | 9–13 ביוני 2026",
+  title: "טיול משפחתי – פראג 2026",
+  description: "הטיול המשפחתי לפראג | 9–13 ביוני 2026",
   openGraph: {
-    title: "משפחת חמם – פראג 2026",
-    description: "הטיול המשפחתי של משפחת חמם לפראג | 9–13 ביוני 2026",
+    title: "טיול משפחתי – פראג 2026",
+    description: "הטיול המשפחתי לפראג | 9–13 ביוני 2026",
     locale: "he_IL",
     type: "website",
   },

@@ -49,7 +49,7 @@ export default function GalleryPage() {
             </div>
             <h2 className="text-2xl font-bold mb-2">אלבום הטיול המשותף</h2>
             <p className="text-lg opacity-90 mb-1">טיול לפראג 2026</p>
-            <p className="text-sm opacity-75 mb-6">Google Photos – משפחת חמם</p>
+            <p className="text-sm opacity-75 mb-6">Google Photos – הטיול המשפחתי</p>
             <div className="inline-flex items-center gap-2 bg-white text-purple-600 font-bold px-6 py-3 rounded-full shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
               <span>פתיחת האלבום</span>
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
