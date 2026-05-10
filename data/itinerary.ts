@@ -146,13 +146,13 @@ export const itinerary: DayPlan[] = [
         icon: "🥐",
       },
       {
-        time: "09:00",
-        title: "הסעה למרכז פראג",
+        time: "10:30",
+        title: "יציאה למרכז פראג",
         description: "נסיעה של כ-25 דק׳ למרכז העיר ההיסטורי",
         icon: "🚌",
       },
       {
-        time: "09:30",
+        time: "11:00",
         title: "הרובע היהודי (יוזפוב)",
         description:
           "Josefov – אחד הרבעים היהודיים העתיקים והמשומרים ביותר באירופה",
@@ -164,7 +164,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Jewish Quarter Prague Josefov",
       },
       {
-        time: "10:30",
+        time: "11:45",
         title: "כיכר העיר העתיקה",
         description: "Old Town Square – הלב הפועם של פראג ההיסטורית",
         details:
@@ -175,7 +175,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Old Town Square Prague",
       },
       {
-        time: "11:00",
+        time: "12:00",
         title: "השעון האסטרונומי",
         description: "Prague Astronomical Clock – שעון מכני מדהים מהמאה ה-15",
         details:
@@ -186,7 +186,19 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Prague Astronomical Clock",
       },
       {
-        time: "12:30",
+        time: "12:15",
+        title: "פסל הראש המסתובב של פרנץ קפקא",
+        description:
+          "Head of Franz Kafka – פסל קינטי מדהים של 42 שכבות מתכת מסתובבות",
+        details:
+          "פסל מודרני ענק של האמן דייוויד צ׳רני (David Černý) – 42 לוחות נירוסטה מסתובבים ויוצרים ומפרקים את פניו של קפקא. גובה 10 מטר, משקל 39 טון. נקודת צילום מטורפת! ממוקם ליד קניון Quadrio.",
+        icon: "🗿",
+        link: "https://en.wikipedia.org/wiki/Head_of_Franz_Kafka",
+        linkLabel: "מידע נוסף",
+        mapQuery: "Franz Kafka Head Statue Prague",
+      },
+      {
+        time: "13:00",
         title: "Výtopna Railway Restaurant",
         description:
           "מסעדה שבה רכבות מיניאטוריות מביאות את האוכל והשתייה לשולחן!",
@@ -199,6 +211,30 @@ export const itinerary: DayPlan[] = [
       },
       {
         time: "14:30",
+        title: "מוזיאון הלגו",
+        description:
+          "LEGO Museum Prague – המוזיאון הגדול ביותר של לגו באירופה!",
+        details:
+          "יותר מ-3,000 מודלים ו-1 מיליון חלקי לגו! תערוכות ענק של ערים, מכוניות, ספינות וסצנות מפורסמות. יש אזור בנייה חופשית לילדים וחנות לגו ענקית. ברחוב Národní – חוויה לכל הגילאים!",
+        icon: "🧱",
+        link: "https://www.muzeumlegopraha.cz/en/",
+        linkLabel: "אתר המוזיאון",
+        mapQuery: "LEGO Museum Prague Národní",
+      },
+      {
+        time: "15:15",
+        title: "האיש התלוי – פסל זיגמונד פרויד",
+        description:
+          "Man Hanging Out – פסל של דייוויד צ׳רני: איש תלוי מקורת גג!",
+        details:
+          "פסל מפתיע של האמן דייוויד צ׳רני – דמות בגודל טבעי של זיגמונד פרויד תלויה ביד אחת מקורת גג ברחוב Husova. חפשו למעלה! אחד מהאמנים הפרובוקטיביים ביותר בפראג.",
+        icon: "🎭",
+        link: "https://en.wikipedia.org/wiki/Man_Hanging_Out",
+        linkLabel: "מידע נוסף",
+        mapQuery: "Man Hanging Out David Cerny Prague Husova",
+      },
+      {
+        time: "15:30",
         title: "הבית הרוקד",
         description:
           "Dancing House (Tančící dům) – בניין מודרני אייקוני בעיצוב פרנק גהרי",
@@ -210,7 +246,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Dancing House Prague",
       },
       {
-        time: "16:00",
+        time: "16:30",
         title: "שייט – Slovanka Boat Rental",
         description:
           "שייט על נהר הוולטאבה מנקודת ההשכרה באי סלובנסקי – נופים פנורמיים!",
@@ -234,13 +270,13 @@ export const itinerary: DayPlan[] = [
     ],
   },
 
-  // ─── DAY 3 ── 11 June ─── פטרין + מצודת פראג + קיר לנון + גשר קארל ───
+  // ─── DAY 3 ── 11 June ─── מצודת פראג + קיר לנון + גשר קארל ───
   {
     id: 3,
     date: "11 ביוני 2026",
-    title: "פטרין + מצודה + גשר קארל",
-    subtitle: "טיול בגבהים עם נופים עוצרי נשימה",
-    emoji: "🏔️",
+    title: "מצודה + לנון + גשר קארל",
+    subtitle: "טיול במצודת פראג והרובע הקטן",
+    emoji: "🏰",
     color: "from-green-500 to-emerald-400",
     mapEmbedUrl: dayMapUrl(50.086, 14.403, 14),
     timeline: [
@@ -251,29 +287,10 @@ export const itinerary: DayPlan[] = [
         icon: "🥐",
       },
       {
-        time: "09:00",
-        title: "הסעה לפטרין",
-        description: "נסיעה לגבעת פטרין – הריאה הירוקה של פראג",
+        time: "10:30",
+        title: "יציאה למצודת פראג",
+        description: "נסיעה של כ-30 דק׳ לאזור המצודה",
         icon: "🚌",
-      },
-      {
-        time: "09:30",
-        title: "מגדל פטרין",
-        description:
-          "Petřín Lookout Tower – מגדל תצפית מיניאטורי בסגנון מגדל אייפל",
-        details:
-          "מגדל בגובה 63 מטר שנבנה ב-1891. עלייה של 299 מדרגות (או מעלית) לנוף הפנורמי הכי מדהים על פראג! רואים את כל העיר – המצודה, גשר קארל, כנסיות והגבעות. ביום בהיר אפשר לראות עד 150 ק״מ.",
-        icon: "🗼",
-        mapQuery: "Petrin Lookout Tower Prague",
-      },
-      {
-        time: "10:15",
-        title: "מבוך המראות",
-        description: "Mirror Maze in Petřín Park – מבוך מראות מצחיק מ-1891",
-        details:
-          "מבוך המראות נמצא ממש ליד המגדל ומכיל מראות מעוותות מצחיקות – הילדים (והמבוגרים!) ישתגעו! בתוכו גם ציור פנורמי ענק של קרב היסטורי על גשר קארל.",
-        icon: "🪞",
-        mapQuery: "Mirror Maze Petrin Prague",
       },
       {
         time: "11:00",
@@ -287,18 +304,45 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Prague Castle",
       },
       {
-        time: "12:30",
-        title: "ארוחת צהריים – Kuchyň",
-        description: "מסעדה עם הנוף הכי מדהים על פראג, ממש ליד המצודה!",
+        time: "11:45",
+        title: "סמטת הזהב",
+        description: "Golden Lane – סמטה צבעונית קסומה בתוך המצודה",
         details:
-          "Kuchyň (בצ׳כית: ״מטבח״) בכיכר Hradčanské מול המצודה. מנות צ׳כיות מודרניות, מומלץ לשבת בטרסה. הנוף מטורף – פראג כמו על כף היד.",
-        icon: "🍽️",
-        link: "https://www.kuchyn.ambi.cz/en/",
-        linkLabel: "אתר המסעדה",
-        mapQuery: "Kuchyň Prague",
+          "שורה של בתים זעירים צבעוניים מהמאה ה-16 בתוך חומות המצודה. פעם גרו כאן צורפי זהב ואלכימאים. פרנץ קפקא גר בבית מס׳ 22! היום הבתים הם מוזיאונים קטנים שמציגים חיי ימי הביניים, שריונות ונשק.",
+        icon: "🏘️",
+        link: "https://en.wikipedia.org/wiki/Golden_Lane",
+        linkLabel: "מידע נוסף",
+        mapQuery: "Golden Lane Prague Castle",
       },
       {
-        time: "14:30",
+        time: "12:15",
+        title: "מוזיאון הצעצועים",
+        description: "Toy Museum – אוסף צעצועים מדהים מ-2,000 שנות היסטוריה!",
+        details:
+          "אחד מאוספי הצעצועים הגדולים בעולם! צעצועי עץ עתיקים, רובוטים, דובי טדי, בובות ברבי מהמהדורות הראשונות, מכוניות פח ודגמי רכבות. ממוקם ממש בתוך מתחם המצודה – הילדים ישתגעו!",
+        icon: "🧸",
+        mapQuery: "Toy Museum Prague Castle Jiřská",
+      },
+      {
+        time: "12:45",
+        title: "מגדל לבן (White Tower)",
+        description: "White Tower – מגדל תצפית מימי הביניים בתוך המצודה",
+        details:
+          "מגדל היסטורי ששימש בעבר כבית סוהר ומגדל תצפית. תצוגת שריונות, נשק ומכשירי עינויים מימי הביניים. מהקומה העליונה נוף מדהים על כל פראג!",
+        icon: "🏰",
+        mapQuery: "White Tower Golden Lane Prague",
+      },
+      {
+        time: "13:15",
+        title: "ארוחת צהריים – U Glaubiců",
+        description: "מסעדה צ׳כית מסורתית בכיכר Malostranské – אווירה מדהימה!",
+        details:
+          "מסעדה היסטורית בלב הרובע הקטן (Malá Strana), ממש מתחת למצודה. מנות צ׳כיות קלאסיות: גולאש, שניצל, כנודלים ובירה מקומית. מרפסת חיצונית עם נוף על הכיכר.",
+        icon: "🍽️",
+        mapQuery: "U Glaubiců Malostranské náměstí Prague",
+      },
+      {
+        time: "14:45",
         title: "הקיר של לנון",
         description:
           "Lennon Wall – קיר גרפיטי אייקוני מלא צבעים, ציטוטים ואמנות רחוב",
@@ -310,7 +354,16 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Lennon Wall Prague",
       },
       {
-        time: "15:30",
+        time: "15:15",
+        title: "הסמטה הצרה ביותר בפראג",
+        description: "Prague's Narrowest Alley – סמטה כל כך צרה שיש לה רמזור!",
+        details:
+          "סמטה ברוחב 50 ס״מ בלבד ברובע Malá Strana! כל כך צרה שהתקינו רמזור לתנועה דו-כיוונית. חוויה מצחיקה ומשונה – חייבים לנסות ולצלם. ממוקמת ברחוב U Lužického semináře ליד נהר הוולטאבה.",
+        icon: "🚦",
+        mapQuery: "Prague narrowest alley U Lužického semináře",
+      },
+      {
+        time: "15:45",
         title: "גשר קארל",
         description:
           "Charles Bridge – הגשר האייקוני של פראג, אחד היפים בעולם",
