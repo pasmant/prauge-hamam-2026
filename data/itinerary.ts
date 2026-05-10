@@ -187,18 +187,6 @@ export const itinerary: DayPlan[] = [
       },
       {
         time: "12:15",
-        title: "פסל הראש המסתובב של פרנץ קפקא",
-        description:
-          "Head of Franz Kafka – פסל קינטי מדהים של 42 שכבות מתכת מסתובבות",
-        details:
-          "פסל מודרני ענק של האמן דייוויד צ׳רני (David Černý) – 42 לוחות נירוסטה מסתובבים ויוצרים ומפרקים את פניו של קפקא. גובה 10 מטר, משקל 39 טון. נקודת צילום מטורפת! ממוקם ליד קניון Quadrio.",
-        icon: "🗿",
-        link: "https://en.wikipedia.org/wiki/Head_of_Franz_Kafka",
-        linkLabel: "מידע נוסף",
-        mapQuery: "Franz Kafka Head Statue Prague",
-      },
-      {
-        time: "13:00",
         title: "Výtopna Railway Restaurant",
         description:
           "מסעדה שבה רכבות מיניאטוריות מביאות את האוכל והשתייה לשולחן!",
@@ -210,31 +198,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Výtopna Railway Restaurant Prague",
       },
       {
-        time: "14:30",
-        title: "מוזיאון הלגו",
-        description:
-          "LEGO Museum Prague – המוזיאון הגדול ביותר של לגו באירופה!",
-        details:
-          "יותר מ-3,000 מודלים ו-1 מיליון חלקי לגו! תערוכות ענק של ערים, מכוניות, ספינות וסצנות מפורסמות. יש אזור בנייה חופשית לילדים וחנות לגו ענקית. ברחוב Národní – חוויה לכל הגילאים!",
-        icon: "🧱",
-        link: "https://www.muzeumlegopraha.cz/en/",
-        linkLabel: "אתר המוזיאון",
-        mapQuery: "LEGO Museum Prague Národní",
-      },
-      {
-        time: "15:15",
-        title: "האיש התלוי – פסל זיגמונד פרויד",
-        description:
-          "Man Hanging Out – פסל של דייוויד צ׳רני: איש תלוי מקורת גג!",
-        details:
-          "פסל מפתיע של האמן דייוויד צ׳רני – דמות בגודל טבעי של זיגמונד פרויד תלויה ביד אחת מקורת גג ברחוב Husova. חפשו למעלה! אחד מהאמנים הפרובוקטיביים ביותר בפראג.",
-        icon: "🎭",
-        link: "https://en.wikipedia.org/wiki/Man_Hanging_Out",
-        linkLabel: "מידע נוסף",
-        mapQuery: "Man Hanging Out David Cerny Prague Husova",
-      },
-      {
-        time: "15:30",
+        time: "14:00",
         title: "הבית הרוקד",
         description:
           "Dancing House (Tančící dům) – בניין מודרני אייקוני בעיצוב פרנק גהרי",
@@ -246,7 +210,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Dancing House Prague",
       },
       {
-        time: "16:30",
+        time: "14:30",
         title: "שייט – Slovanka Boat Rental",
         description:
           "שייט על נהר הוולטאבה מנקודת ההשכרה באי סלובנסקי – נופים פנורמיים!",
@@ -254,6 +218,42 @@ export const itinerary: DayPlan[] = [
           "אפשרות לסירות פדלים או שייט מאורגן. נוף פנורמי על המצודה, גשר קארל, התיאטרון הלאומי ובניינים היסטוריים. מומלץ לצלם! הנקודה באי Slovanský ostrov – אי ירוק ושקט במרכז פראג.",
         icon: "🚣",
         mapQuery: "Rental boats Slovanka Prague",
+      },
+      {
+        time: "15:30",
+        title: "פסל הראש המסתובב של פרנץ קפקא",
+        description:
+          "Head of Franz Kafka – פסל קינטי מדהים של 42 שכבות מתכת מסתובבות",
+        details:
+          "פסל מודרני ענק של האמן דייוויד צ׳רני (David Černý) – 42 לוחות נירוסטה מסתובבים ויוצרים ומפרקים את פניו של קפקא. גובה 10 מטר, משקל 39 טון. נקודת צילום מטורפת! ממוקם ליד קניון Quadrio.",
+        icon: "🗿",
+        link: "https://en.wikipedia.org/wiki/Head_of_Franz_Kafka",
+        linkLabel: "מידע נוסף",
+        mapQuery: "Franz Kafka Head Statue Prague",
+      },
+      {
+        time: "16:00",
+        title: "מוזיאון הלגו",
+        description:
+          "LEGO Museum Prague – המוזיאון הגדול ביותר של לגו באירופה!",
+        details:
+          "יותר מ-3,000 מודלים ו-1 מיליון חלקי לגו! תערוכות ענק של ערים, מכוניות, ספינות וסצנות מפורסמות. יש אזור בנייה חופשית לילדים וחנות לגו ענקית. ברחוב Národní – חוויה לכל הגילאים!",
+        icon: "🧱",
+        link: "https://www.muzeumlegopraha.cz/en/",
+        linkLabel: "אתר המוזיאון",
+        mapQuery: "LEGO Museum Prague Národní",
+      },
+      {
+        time: "16:45",
+        title: "האיש התלוי – פסל זיגמונד פרויד",
+        description:
+          "Man Hanging Out – פסל של דייוויד צ׳רני: איש תלוי מקורת גג!",
+        details:
+          "פסל מפתיע של האמן דייוויד צ׳רני – דמות בגודל טבעי של זיגמונד פרויד תלויה ביד אחת מקורת גג ברחוב Husova. חפשו למעלה! אחד מהאמנים הפרובוקטיביים ביותר בפראג.",
+        icon: "🎭",
+        link: "https://en.wikipedia.org/wiki/Man_Hanging_Out",
+        linkLabel: "מידע נוסף",
+        mapQuery: "Man Hanging Out David Cerny Prague Husova",
       },
       {
         time: "18:00",
