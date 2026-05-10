@@ -152,7 +152,7 @@ export const itinerary: DayPlan[] = [
         icon: "🚌",
       },
       {
-        time: "11:00",
+        time: "11:30",
         title: "הרובע היהודי (יוזפוב)",
         description:
           "Josefov – אחד הרבעים היהודיים העתיקים והמשומרים ביותר באירופה",
@@ -164,7 +164,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Jewish Quarter Prague Josefov",
       },
       {
-        time: "11:45",
+        time: "12:30",
         title: "כיכר העיר העתיקה",
         description: "Old Town Square – הלב הפועם של פראג ההיסטורית",
         details:
@@ -175,7 +175,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Old Town Square Prague",
       },
       {
-        time: "12:00",
+        time: "13:00",
         title: "השעון האסטרונומי",
         description: "Prague Astronomical Clock – שעון מכני מדהים מהמאה ה-15",
         details:
@@ -186,7 +186,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Prague Astronomical Clock",
       },
       {
-        time: "12:15",
+        time: "14:00",
         title: "Výtopna Railway Restaurant",
         description:
           "מסעדה שבה רכבות מיניאטוריות מביאות את האוכל והשתייה לשולחן!",
@@ -198,7 +198,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Výtopna Railway Restaurant Prague",
       },
       {
-        time: "14:00",
+        time: "16:00",
         title: "הבית הרוקד",
         description:
           "Dancing House (Tančící dům) – בניין מודרני אייקוני בעיצוב פרנק גהרי",
@@ -210,7 +210,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Dancing House Prague",
       },
       {
-        time: "14:30",
+        time: "16:30",
         title: "שייט – Slovanka Boat Rental",
         description:
           "שייט על נהר הוולטאבה מנקודת ההשכרה באי סלובנסקי – נופים פנורמיים!",
@@ -220,7 +220,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Rental boats Slovanka Prague",
       },
       {
-        time: "15:30",
+        time: "17:30",
         title: "פסל הראש המסתובב של פרנץ קפקא",
         description:
           "Head of Franz Kafka – פסל קינטי מדהים של 42 שכבות מתכת מסתובבות",
@@ -232,7 +232,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Franz Kafka Head Statue Prague",
       },
       {
-        time: "16:00",
+        time: "18:00",
         title: "מוזיאון הלגו",
         description:
           "LEGO Museum Prague – המוזיאון הגדול ביותר של לגו באירופה!",
@@ -244,7 +244,7 @@ export const itinerary: DayPlan[] = [
         mapQuery: "LEGO Museum Prague Národní",
       },
       {
-        time: "16:45",
+        time: "18:50",
         title: "האיש התלוי – פסל זיגמונד פרויד",
         description:
           "Man Hanging Out – פסל של דייוויד צ׳רני: איש תלוי מקורת גג!",
@@ -256,9 +256,9 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Man Hanging Out David Cerny Prague Husova",
       },
       {
-        time: "18:00",
-        title: "חזרה למלון",
-        description: "הסעה חזרה + זמן חופשי בפארק המים או מנוחה",
+        time: "19:00",
+        title: "נסיעה למלון",
+        description: "הסעה חזרה למלון",
         icon: "🚌",
       },
       {
