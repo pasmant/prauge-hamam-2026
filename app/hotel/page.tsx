@@ -297,19 +297,29 @@ export default function HotelPage() {
 
         <h3 className="font-bold text-slate-700 mb-3 flex items-center gap-2">
           <Coffee className="w-4 h-4" />
-          בארים וקפה בפארק המים
+          מסעדות, בארים וקפה בפארק המים
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
           {waterParkBars.map((bar) => (
-            <div key={bar.name} className="bg-slate-50 rounded-xl p-3">
+            <a
+              key={bar.name}
+              href={bar.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-slate-50 rounded-xl p-3 hover:bg-aqua/5 hover:ring-1 hover:ring-aqua/30 transition-all block"
+            >
               <p className="font-bold text-xs text-slate-800">{bar.nameHe}</p>
               <p className="text-[11px] text-slate-400">{bar.location}</p>
               <p className="text-xs text-slate-500 mt-1">{bar.description}</p>
-            </div>
+              <p className="text-[10px] text-aqua mt-1 flex items-center gap-1">
+                <ExternalLink className="w-3 h-3" />
+                פרטים נוספים
+              </p>
+            </a>
           ))}
         </div>
 
-        <div className="mt-3">
+        <div className="mt-3 flex flex-wrap gap-3">
           <a
             href="https://www.aquapalacehotel.cz/en/restaurants-bars"
             target="_blank"
@@ -317,7 +327,16 @@ export default function HotelPage() {
             className="inline-flex items-center gap-1 text-aqua hover:underline text-sm"
           >
             <ExternalLink className="w-4 h-4" />
-            כל המסעדות באתר הרשמי
+            מסעדות המלון
+          </a>
+          <a
+            href="https://www.aquapalace.cz/en/restaurace"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-aqua hover:underline text-sm"
+          >
+            <ExternalLink className="w-4 h-4" />
+            מסעדות ובארים בפארק
           </a>
         </div>
       </CollapsibleSection>

@@ -408,36 +408,93 @@ export const hotelRestaurants = [
   },
 ];
 
+const PARK_REST = `${PARK_BASE}/en/restaurace`;
+
 export const waterParkBars = [
   {
-    name: "Paradise Café",
-    nameHe: "קפה פרדייס",
-    location: "ארמון הרגיעה",
-    description: "קפה ושתייה על המרפסת הפנימית",
-  },
-  {
-    name: "Ice Bar Gelateria",
-    nameHe: "בר גלידה",
-    location: "ליד בור הצלילה",
-    description: "גלידות, שייקים ופינוקים קרים",
+    name: "Puzzle Restaurant",
+    nameHe: "מסעדת פאזל",
+    location: "קומה 1 – בין ארמון ההרפתקאות לארמון האוצרות",
+    description:
+      "מסעדה ראשית בלב פארק המים! מנות חמות, בורגרים, שניצלים, פסטות ותפריט ילדים. אפשר לאכול בבגד ים!",
+    link: `${PARK_REST}/puzzle-restaurace`,
   },
   {
     name: "Creative Pizza",
-    nameHe: "פיצה יצירתית",
-    location: "אזור פארק המים",
-    description: "פיצות ייחודיות בתוספות מיוחדות",
-  },
-  {
-    name: "Coral Bar",
-    nameHe: "בר קורל",
-    location: "כיפת האלמוגים",
-    description: "קוקטיילים קריביים וחטיפים",
+    nameHe: "פיצה יצירתית 🍕",
+    location: "אולם הכניסה – אזור השקט",
+    description:
+      "פיצות יצירתיות עם תוספות מפתיעות! ילדים יכולים להרכיב פיצה משלהם. מרכיבים טריים ואיכותיים. תפריט צהריים 11:00–14:00.",
+    link: `${PARK_REST}/creative-pizza`,
   },
   {
     name: "Café Clara",
-    nameHe: "קפה קלרה",
-    location: "לובי המלון",
-    description: "קפה, עוגות ומאפים טריים",
+    nameHe: "קפה קלרה ☕",
+    location: "אולם הכניסה",
+    description:
+      "קפה, עוגות טריות מהקונדיטוריה, מאפים ופינוקים מתוקים. מושלם להפסקה לפני או אחרי הפארק.",
+    link: `${PARK_REST}/cafe-clara`,
+  },
+  {
+    name: "Clara Cafe – Costa Coffee",
+    nameHe: "קלרה קפה – קוסטה קופי",
+    location: "ליד כיפת האלמוגים",
+    description:
+      "סניף Costa Coffee בתוך הפארק! קפה איכותי, שייקים, מאפים וחטיפים. מקום נהדר להפסקה.",
+    link: `${PARK_REST}/clara-cafe-costa-coffee`,
+  },
+  {
+    name: "Revontuli Sauna Restaurant",
+    nameHe: "מסעדת רבונטולי (סאונה) 🍲",
+    location: "עולם הסאונות",
+    description:
+      "מסעדה בתוך עולם הסאונות! מנות חמות, סלטים, מרקים ושתייה. אפשר לאכול בחלוק. אווירה נינוחה אחרי סאונה.",
+    link: `${PARK_REST}/revontuli-sauna-restaurant`,
+  },
+  {
+    name: "Paradise Café",
+    nameHe: "קפה פרדייס 🌴",
+    location: "מרפסת פנימית – ארמון הרגיעה",
+    description:
+      "קפה ושתייה על המרפסת הפנימית של ארמון הרגיעה. נוף על הבריכות והג׳קוזים.",
+    link: `${PARK_REST}/paradise-bar`,
+  },
+  {
+    name: "Ice Bar Gelateria",
+    nameHe: "בר גלידה 🍦",
+    location: "ליד בור הצלילה – ארמון הרגיעה",
+    description:
+      "גלידות Algida, שייקים, פרוזן יוגורט ופינוקים קרים. מושלם אחרי מגלשות!",
+    link: `${PARK_REST}/algida-ice-bar`,
+  },
+  {
+    name: "Coral Bar",
+    nameHe: "בר קורל 🐚",
+    location: "בריכה חיצונית",
+    description:
+      "בר ליד הבריכה החיצונית! קוקטיילים, שייקים, בירה וחטיפים. אווירה קריבית.",
+    link: `${PARK_REST}/coral-bar`,
+  },
+  {
+    name: "Pool Bar",
+    nameHe: "פול בר 🏊",
+    location: "ארמון האוצרות",
+    description: "שתייה וחטיפים ליד הבריכה בארמון האוצרות.",
+    link: `${PARK_REST}/pool-bar`,
+  },
+  {
+    name: "Sauna Bar",
+    nameHe: "בר סאונה 🧖",
+    location: "עולם הסאונות",
+    description: "משקאות, תה ומיצים טבעיים בתוך עולם הסאונות. מנוחה ורענון.",
+    link: `${PARK_REST}/sauna-bar`,
+  },
+  {
+    name: "Fitness Bar",
+    nameHe: "פיטנס בר 💪",
+    location: "אולם הכניסה (פיטנס)",
+    description: "שייקי חלבון, משקאות אנרגיה ומנות בריאות ליד חדר הכושר.",
+    link: `${PARK_REST}/fitness-bar`,
   },
 ];
 
