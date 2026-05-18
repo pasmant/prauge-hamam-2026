@@ -3,34 +3,10 @@
 import { motion } from "framer-motion";
 import { Map, ExternalLink, Navigation } from "lucide-react";
 import { MAIN_MAP_EMBED } from "@/data/itinerary";
-
-const quickLocations = [
-  {
-    name: "Aquapalace Hotel",
-    emoji: "🏨",
-    query: "Aquapalace Hotel Prague",
-  },
-  {
-    name: "כיכר העיר העתיקה",
-    emoji: "🏛️",
-    query: "Old Town Square Prague",
-  },
-  { name: "גשר קארל", emoji: "🌉", query: "Charles Bridge Prague" },
-  { name: "מצודת פראג", emoji: "🏰", query: "Prague Castle" },
-  { name: "גבעת פטרין", emoji: "🏔️", query: "Petrin Hill Prague" },
-  {
-    name: "Výtopna Restaurant",
-    emoji: "🚂",
-    query: "Vytopna Railway Restaurant Prague",
-  },
-  { name: "גן החיות", emoji: "🦁", query: "Prague Zoo" },
-  { name: "מוזיאון לגו", emoji: "🧱", query: "LEGO Museum Prague" },
-  {
-    name: "Centrum Chodov",
-    emoji: "🛍️",
-    query: "Centrum Chodov Prague",
-  },
-];
+import {
+  mapAttractionSections,
+  TOUR_MAP_VIEWER_URL,
+} from "@/data/tourMapData";
 
 export default function MapPage() {
   return (
@@ -41,10 +17,11 @@ export default function MapPage() {
       >
         <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
           <Map className="w-8 h-8 text-aqua" />
-          מפת הטיול
+          מפת האטרקציות
         </h1>
         <p className="text-slate-500 mb-6">
-          כל האטרקציות, המסעדות והמקומות המומלצים במפה אחת
+          רק המקומות שמסומנים במפת Google My Maps של הטיול – מסודרים לפי נושאים
+          (ללא מסעדות; לרשימת מסעדות עברו לטאב מסעדות)
         </p>
       </motion.div>
 
@@ -65,7 +42,7 @@ export default function MapPage() {
 
       <div className="mt-4 text-center">
         <a
-          href="https://www.google.com/maps/d/viewer?mid=1wg92j3t2nK4ztN_tVE--oFfclrVWRh8"
+          href={TOUR_MAP_VIEWER_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-aqua hover:underline text-sm font-medium"
@@ -75,26 +52,56 @@ export default function MapPage() {
         </a>
       </div>
 
-      {/* Quick location cards */}
-      <h2 className="text-lg font-bold text-slate-800 mt-8 mb-3">
-        ניווט מהיר
+      <h2 className="text-lg font-bold text-slate-800 mt-10 mb-4">
+        אטרקציות לפי נושאים (מהמפה)
       </h2>
-      <div className="grid grid-cols-3 gap-2 md:grid-cols-3 md:gap-3">
-        {quickLocations.map((place) => (
-          <a
-            key={place.name}
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.query)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white rounded-2xl p-3 md:p-4 shadow-sm text-center hover:shadow-md transition-shadow"
+
+      <div className="space-y-8">
+        {mapAttractionSections.map((section, si) => (
+          <motion.section
+            key={section.id}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ delay: si * 0.05 }}
+            className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden"
           >
-            <span className="text-2xl md:text-3xl block mb-1 md:mb-2">
-              {place.emoji}
-            </span>
-            <span className="text-xs md:text-sm font-medium text-slate-700 leading-tight block">
-              {place.name}
-            </span>
-          </a>
+            <div className="bg-gradient-to-l from-slate-50 to-white px-4 py-3 border-b border-slate-100">
+              <h3 className="font-bold text-slate-800 flex items-center gap-2">
+                <span className="text-xl" aria-hidden>
+                  {section.icon}
+                </span>
+                {section.title}
+              </h3>
+              {section.description && (
+                <p className="text-xs text-slate-500 mt-1">{section.description}</p>
+              )}
+            </div>
+            <div className="p-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {section.items.map((place) => (
+                <a
+                  key={place.id}
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.mapQuery)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 rounded-xl p-3 hover:bg-aqua/5 transition-colors group"
+                >
+                  <span className="text-lg shrink-0 mt-0.5" aria-hidden>
+                    📍
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="font-medium text-slate-800 text-sm block group-hover:text-aqua">
+                      {place.nameHe}
+                    </span>
+                    <span className="text-xs text-slate-400 block truncate">
+                      {place.name}
+                    </span>
+                  </span>
+                  <Navigation className="w-4 h-4 text-slate-300 group-hover:text-aqua shrink-0 mt-1" />
+                </a>
+              ))}
+            </div>
+          </motion.section>
         ))}
       </div>
     </div>
