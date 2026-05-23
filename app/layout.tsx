@@ -37,7 +37,9 @@ export default function RootLayout({
     <html lang="he" dir="rtl" className={`${heebo.variable} ${assistant.variable}`}>
       <body className="font-heebo antialiased bg-slate-50 text-foreground min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-1 pb-20 md:pb-0">{children}</main>
+        <main className="flex-1 pb-[calc(5.5rem+env(safe-area-inset-bottom))] lg:pb-0">
+          {children}
+        </main>
         <Footer />
         <BottomNav />
       </body>
