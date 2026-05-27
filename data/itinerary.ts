@@ -155,7 +155,7 @@ export const itinerary: DayPlan[] = [
         linkLabel: "פרטי הפארק",
       },
       {
-        time: "14:00",
+        time: "13:30",
         title: "יציאה למרכז פראג",
         description: "מתארגנים ויוצאים – נסיעה של כ-40 דק׳",
         details:
@@ -164,7 +164,7 @@ export const itinerary: DayPlan[] = [
       },
       // ── חלק א׳: העיר העתיקה ──
       {
-        time: "15:00",
+        time: "14:30",
         title: "🚂 Výtopna Railway Restaurant – ארוחת צהריים",
         description: "המסעדה שבה רכבות מיניאטוריות מגישות את האוכל לשולחן!",
         details:
