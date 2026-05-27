@@ -360,7 +360,7 @@ export const itinerary: DayPlan[] = [
       {
         time: "21:15",
         title: "חזרה למלון",
-        description: "הסעה חזרה למלון – יום ארוך ומדהים!",
+        description: "חזרה למלון תהיה באופן עצמאי",
         icon: "🚌",
       },
     ],
@@ -493,7 +493,7 @@ export const itinerary: DayPlan[] = [
       {
         time: "17:30",
         title: "חזרה למלון",
-        description: "הסעה חזרה למלון",
+        description: "חזרה למלון תהיה באופן עצמאי",
         icon: "🚌",
       },
     ],
