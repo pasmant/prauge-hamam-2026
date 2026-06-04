@@ -23,6 +23,10 @@ const dayNames: Record<number, string> = {
   6: "שבת",
 };
 
+/** תחזית מלאה לפראג (Google Weather) */
+const PRAGUE_WEATHER_URL =
+  "https://www.google.com/search?q=weather+Prague+Czech+Republic";
+
 const fallbackData: DayWeather[] = [
   { day: "יום ג׳ 9/6", tempHigh: 26, tempLow: 14, icon: "☀️", rain: "10%", wind: "12", condition: "בהיר" },
   { day: "יום ד׳ 10/6", tempHigh: 24, tempLow: 13, icon: "⛅", rain: "30%", wind: "15", condition: "מעונן חלקית" },
@@ -82,10 +86,18 @@ export function WeatherWidget() {
   return (
     <section id="weather" className="py-8 px-4">
       <div className="max-w-2xl mx-auto">
-        <div className="flex items-center gap-2 mb-5 justify-center">
-          <CloudSun className="w-6 h-6 text-aqua" />
-          <h2 className="text-xl font-bold text-slate-700">מזג אוויר בפראג</h2>
-        </div>
+        <a
+          href={PRAGUE_WEATHER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 mb-5 justify-center group"
+          aria-label="פתח תחזית מזג אוויר מלאה לפראג"
+        >
+          <CloudSun className="w-6 h-6 text-aqua group-hover:scale-110 transition-transform" />
+          <h2 className="text-xl font-bold text-slate-700 group-hover:text-aqua transition-colors">
+            מזג אוויר בפראג
+          </h2>
+        </a>
         {!isLive && (
           <div className="text-center text-xs text-slate-400 mb-3">
             * תחזית משוערת – מתעדכנת אוטומטית
@@ -97,11 +109,16 @@ export function WeatherWidget() {
             נתונים חיים מ-WeatherAPI
           </div>
         )}
+        <p className="text-center text-[10px] text-slate-400 mb-2">לחיצה לתחזית מלאה</p>
         <div className="grid grid-cols-5 gap-2">
           {weather.map((day) => (
-            <div
+            <a
               key={day.day}
-              className="bg-white rounded-2xl p-3 shadow-sm text-center"
+              href={PRAGUE_WEATHER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`תחזית מזג אוויר בפראג – ${day.day}, ${day.condition}`}
+              className="bg-white rounded-2xl p-3 shadow-sm text-center transition-all hover:shadow-md hover:ring-2 hover:ring-aqua/30 active:scale-[0.98] touch-manipulation"
             >
               <p className="text-[10px] md:text-xs font-semibold text-slate-500 mb-1 leading-tight">
                 {day.day}
@@ -118,7 +135,7 @@ export function WeatherWidget() {
                 <Wind className="w-3 h-3 text-slate-400" />
                 <span className="text-[10px] text-slate-400">{day.wind} km/h</span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
