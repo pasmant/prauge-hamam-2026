@@ -5,7 +5,8 @@ import { CloudSun, Droplets, Wind } from "lucide-react";
 
 interface DayWeather {
   day: string;
-  temp: number;
+  tempHigh: number;
+  tempLow: number;
   icon: string;
   rain: string;
   wind: string;
@@ -23,11 +24,11 @@ const dayNames: Record<number, string> = {
 };
 
 const fallbackData: DayWeather[] = [
-  { day: "יום ג׳ 9/6", temp: 24, icon: "☀️", rain: "10%", wind: "12", condition: "בהיר" },
-  { day: "יום ד׳ 10/6", temp: 22, icon: "⛅", rain: "30%", wind: "15", condition: "מעונן חלקית" },
-  { day: "יום ה׳ 11/6", temp: 23, icon: "🌤️", rain: "20%", wind: "10", condition: "בהיר" },
-  { day: "יום ו׳ 12/6", temp: 25, icon: "☀️", rain: "5%", wind: "8", condition: "בהיר" },
-  { day: "שבת 13/6", temp: 21, icon: "🌥️", rain: "40%", wind: "18", condition: "מעונן" },
+  { day: "יום ג׳ 9/6", tempHigh: 26, tempLow: 14, icon: "☀️", rain: "10%", wind: "12", condition: "בהיר" },
+  { day: "יום ד׳ 10/6", tempHigh: 24, tempLow: 13, icon: "⛅", rain: "30%", wind: "15", condition: "מעונן חלקית" },
+  { day: "יום ה׳ 11/6", tempHigh: 25, tempLow: 14, icon: "🌤️", rain: "20%", wind: "10", condition: "בהיר" },
+  { day: "יום ו׳ 12/6", tempHigh: 27, tempLow: 15, icon: "☀️", rain: "5%", wind: "8", condition: "בהיר" },
+  { day: "שבת 13/6", tempHigh: 23, tempLow: 12, icon: "🌥️", rain: "40%", wind: "18", condition: "מעונן" },
 ];
 
 function conditionToEmoji(code: number): string {
@@ -62,7 +63,8 @@ export function WeatherWidget() {
               const dayMonth = `${date.getDate()}/${date.getMonth() + 1}`;
               return {
                 day: `${dayOfWeek} ${dayMonth}`,
-                temp: Math.round(d.day.avgtemp_c),
+                tempHigh: Math.round(d.day.maxtemp_c),
+                tempLow: Math.round(d.day.mintemp_c),
                 icon: conditionToEmoji(d.day.condition.code),
                 rain: `${d.day.daily_chance_of_rain}%`,
                 wind: `${Math.round(d.day.maxwind_kph)}`,
@@ -105,7 +107,9 @@ export function WeatherWidget() {
                 {day.day}
               </p>
               <p className="text-3xl mb-1">{day.icon}</p>
-              <p className="text-lg font-bold text-slate-800">{day.temp}°</p>
+              <p className="text-base md:text-lg font-bold text-slate-800 tabular-nums">
+                {day.tempHigh}°/{day.tempLow}°
+              </p>
               <div className="flex items-center justify-center gap-1 mt-1">
                 <Droplets className="w-3 h-3 text-blue-400" />
                 <span className="text-[10px] text-slate-400">{day.rain}</span>
