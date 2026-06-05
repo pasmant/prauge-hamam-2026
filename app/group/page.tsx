@@ -56,7 +56,7 @@ export default function GroupPage() {
             { day: "יום 2 (10/6)", desc: "מרכז פראג → מלון", time: "18:00" },
             { day: "יום 3 (11/6)", desc: "מלון → פטרין", time: "09:00" },
             { day: "יום 3 (11/6)", desc: "מצודה → מלון", time: "16:00" },
-            { day: "יום 5 (13/6)", desc: "מלון → שדה תעופה", time: "15:30" },
+            { day: "יום 5 (13/6)", desc: "מלון → שדה תעופה", time: "17:45" },
           ].map((route, i) => (
             <div key={i} className="flex items-center gap-4 py-2 border-b border-slate-50 last:border-0">
               <span className="text-xs font-bold text-aqua bg-aqua-light px-3 py-1 rounded-full min-w-[50px] text-center">

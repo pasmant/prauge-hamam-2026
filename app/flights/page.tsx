@@ -215,6 +215,11 @@ function FlightCard({
             )}
             <p className="text-sm text-slate-500">{flight.arrivalCityEn}</p>
             <p className="text-xs text-slate-400">{flight.arrivalAirport}</p>
+            {flight.arrivalDate && (
+              <p className="text-xs text-amber-600 font-medium mt-1">
+                {flight.arrivalDate}
+              </p>
+            )}
           </div>
         </div>
 

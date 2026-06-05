@@ -6,6 +6,9 @@ export interface Flight {
   flightNumber: string;
   date: string;
   dateEn: string;
+  /** תאריך נחיתה אם שונה מתאריך ההמראה (טיסות לילה) */
+  arrivalDate?: string;
+  arrivalDateEn?: string;
   departureTime: string;
   arrivalTime: string;
   departureCity: string;
@@ -49,8 +52,10 @@ export const flights: Flight[] = [
     flightNumber: "U8461",
     date: "שבת, 13 ביוני 2026",
     dateEn: "2026-06-13",
-    departureTime: "18:55",
-    arrivalTime: "23:40",
+    arrivalDate: "יום ראשון, 14 ביוני 2026",
+    arrivalDateEn: "2026-06-14",
+    departureTime: "21:45",
+    arrivalTime: "02:30",
     departureCity: "פראג",
     departureCityEn: "Prague",
     departureAirport: "Prague Airport (PRG)",
