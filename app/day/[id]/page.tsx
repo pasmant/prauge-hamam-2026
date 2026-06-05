@@ -16,7 +16,11 @@ import {
   Utensils,
   Sparkles,
 } from "lucide-react";
-import { itinerary, type FreeDayOption } from "@/data/itinerary";
+import {
+  itinerary,
+  type FreeDayOption,
+  type TimelineBranchItem,
+} from "@/data/itinerary";
 import { notFound } from "next/navigation";
 
 const categoryMeta: Record<
@@ -76,6 +80,57 @@ export default function DayPage({
 
   let globalOptionIdx = 0;
 
+  const renderBranchItem = (branchItem: TimelineBranchItem) => (
+    <div
+      key={`${branchItem.time}-${branchItem.title}`}
+      className="rounded-xl border border-slate-100 bg-slate-50/80 p-3"
+    >
+      <div className="flex items-center gap-2 mb-1">
+        <span className="text-lg">{branchItem.icon}</span>
+        <span className="text-[10px] font-bold text-aqua bg-aqua-light px-2 py-0.5 rounded-full">
+          {branchItem.time}
+        </span>
+      </div>
+      <h4 className="font-semibold text-slate-800 text-sm">{branchItem.title}</h4>
+      <p className="text-xs text-slate-600 mt-1">{branchItem.description}</p>
+      {branchItem.details && (
+        <p className="text-xs text-slate-500 mt-2 leading-relaxed whitespace-pre-line">
+          {branchItem.details}
+        </p>
+      )}
+      {(branchItem.link || branchItem.mapQuery) && (
+        <div className="flex flex-wrap items-center gap-3 mt-2">
+          {branchItem.link && (
+            <a
+              href={branchItem.link}
+              target={branchItem.link.startsWith("http") ? "_blank" : undefined}
+              rel={
+                branchItem.link.startsWith("http")
+                  ? "noopener noreferrer"
+                  : undefined
+              }
+              className="inline-flex items-center gap-1 text-xs text-aqua hover:underline"
+            >
+              <ExternalLink className="w-3 h-3" />
+              {branchItem.linkLabel || "מידע נוסף"}
+            </a>
+          )}
+          {branchItem.mapQuery && (
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branchItem.mapQuery)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-emerald-600 hover:underline"
+            >
+              <Navigation className="w-3 h-3" />
+              נווט לכאן
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
       {/* Back */}
@@ -123,14 +178,16 @@ export default function DayPage({
 
               <div className="flex-1 bg-white rounded-2xl shadow-sm overflow-hidden">
                 <button
-                  onClick={() => item.details && toggleTimeline(i)}
+                  onClick={() =>
+                    item.details && !item.branches && toggleTimeline(i)
+                  }
                   className="w-full text-right p-4"
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-xs font-bold text-aqua bg-aqua-light px-2 py-0.5 rounded-full">
                       {item.time}
                     </span>
-                    {item.details && (
+                    {item.details && !item.branches && (
                       <span className="mr-auto">
                         {expandedTimeline.includes(i) ? (
                           <ChevronUp className="w-4 h-4 text-slate-400" />
@@ -146,13 +203,41 @@ export default function DayPage({
                   </p>
                 </button>
 
-                {item.details && expandedTimeline.includes(i) && (
+                {item.branches && (
+                  <div className="px-4 pb-4 border-t border-slate-100">
+                    {item.details && (
+                      <p className="text-sm text-slate-600 mt-3 leading-relaxed whitespace-pre-line">
+                        {item.details}
+                      </p>
+                    )}
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                      {item.branches.map((branch) => (
+                        <div
+                          key={branch.label}
+                          className="rounded-2xl border-2 border-dashed border-aqua/30 bg-white p-3"
+                        >
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-xl">{branch.icon}</span>
+                            <h4 className="font-bold text-sm text-slate-800">
+                              {branch.label}
+                            </h4>
+                          </div>
+                          <div className="space-y-2">
+                            {branch.items.map(renderBranchItem)}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {item.details && !item.branches && expandedTimeline.includes(i) && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     className="px-4 pb-4 border-t border-slate-100"
                   >
-                    <p className="text-sm text-slate-600 mt-3 leading-relaxed">
+                    <p className="text-sm text-slate-600 mt-3 leading-relaxed whitespace-pre-line">
                       {item.details}
                     </p>
                   </motion.div>

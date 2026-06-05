@@ -1,3 +1,20 @@
+export interface TimelineBranchItem {
+  time: string;
+  title: string;
+  description: string;
+  details?: string;
+  icon: string;
+  link?: string;
+  linkLabel?: string;
+  mapQuery?: string;
+}
+
+export interface TimelineBranch {
+  label: string;
+  icon: string;
+  items: TimelineBranchItem[];
+}
+
 export interface TimelineItem {
   time: string;
   title: string;
@@ -8,6 +25,7 @@ export interface TimelineItem {
   link?: string;
   linkLabel?: string;
   mapQuery?: string;
+  branches?: TimelineBranch[];
 }
 
 export interface FreeDayOption {
@@ -207,32 +225,65 @@ export const itinerary: DayPlan[] = [
       },
       {
         time: "17:15",
-        title: "מוזיאון הלגו",
-        description: "LEGO Museum Prague – הגדול ביותר באירופה! מיליון חלקים",
+        title: "🔀 פיצול מסלול – בוחרים אחת משתי אפשרויות",
+        description: "מסלול א׳: לגו + LEVELS | מסלול ב׳: Casino Ambassador",
         details:
-          "🕐 שעות פתיחה: 10:00–20:00 כל יום.\n🎫 כניסה: כ-290 CZK מבוגר, 220 CZK ילד.\n📍 מיקום: Národní 362/31 – 2 דק׳ הליכה מפסל קפקא.\nיותר מ-3,000 מודלים ו-1 מיליון חלקי לגו! תערוכות: ערים שלמות, Star Wars, Harry Potter, מכוניות וספינות בגודל אמיתי. אזור בנייה חופשית לילדים. חנות לגו ענקית עם סטים שלא מוצאים בישראל!\n📖 לילדים: מוזיאון ענק של לגו – אפשר לבנות לבד באזור המיוחד!",
-        icon: "🧱",
-        link: "https://www.muzeumlegopraha.cz/en/",
-        linkLabel: "אתר המוזיאון",
-        mapQuery: "LEGO Museum Prague Národní",
-      },
-      {
-        time: "18:00",
-        title: "LEVELS Prague",
-        description: "מרכז בידור ענק – 200+ משחקי ארקייד, באולינג, מיני גולף!",
-        details:
-          "🕐 פתוח: ראשון–חמישי 10:00–00:00, שישי–שבת 10:00–02:00.\n📍 מיקום: Národní 63/26 – 2 דק׳ הליכה ממוזיאון הלגו.\nמרכז בידור ענק על שתי קומות: 200+ משחקי ארקייד, סימולטורי VR, באולינג, מיני גולף פלואורסנטי, אוטודרום, ביליארד ודארטס.\n📖 לילדים: פארק שעשועים בתוך בניין! 200 משחקים ומיני גולף שזוהר בחושך!\n💡 הקדישו כ-40 דקות.",
-        icon: "🕹️",
-        link: "https://levelsprague.com/en/",
-        linkLabel: "אתר LEVELS",
-        mapQuery: "LEVELS Prague Národní",
+          "אחרי פסל קפקא המסלול מתפצל – כל משפחה בוחרת לאן ללכת.\n📍 נקודת מפגש לכולם: 18:45 באיש התלוי (רחוב Husova) – ממשיכים יחד משם!\n\n⚠️ מי שבוחר בקזינו – חובה להביא דרכון (מקורי, לא צילום)! גיל 18+ בלבד. דמי רישום חד-פעמיים: 250 CZK.",
+        icon: "🔀",
+        branches: [
+          {
+            label: "מסלול א׳ – לגו ו-LEVELS",
+            icon: "🧱",
+            items: [
+              {
+                time: "17:15",
+                title: "מוזיאון הלגו",
+                description: "LEGO Museum Prague – הגדול ביותר באירופה! מיליון חלקים",
+                details:
+                  "🕐 שעות פתיחה: 10:00–20:00 כל יום.\n🎫 כניסה: כ-290 CZK מבוגר, 220 CZK ילד.\n📍 מיקום: Národní 362/31 – 2 דק׳ הליכה מפסל קפקא.\nיותר מ-3,000 מודלים ו-1 מיליון חלקי לגו! תערוכות: ערים שלמות, Star Wars, Harry Potter, מכוניות וספינות בגודל אמיתי. אזור בנייה חופשית לילדים. חנות לגו ענקית עם סטים שלא מוצאים בישראל!\n📖 לילדים: מוזיאון ענק של לגו – אפשר לבנות לבד באזור המיוחד!",
+                icon: "🧱",
+                link: "https://www.muzeumlegopraha.cz/en/",
+                linkLabel: "אתר המוזיאון",
+                mapQuery: "LEGO Museum Prague Národní",
+              },
+              {
+                time: "18:00",
+                title: "LEVELS Prague",
+                description: "מרכז בידור ענק – 200+ משחקי ארקייד, באולינג, מיני גולף!",
+                details:
+                  "🕐 פתוח: ראשון–חמישי 10:00–00:00, שישי–שבת 10:00–02:00.\n📍 מיקום: Národní 63/26 – 2 דק׳ הליכה ממוזיאון הלגו.\nמרכז בידור ענק על שתי קומות: 200+ משחקי ארקייד, סימולטורי VR, באולינג, מיני גולף פלואורסנטי, אוטודרום, ביליארד ודארטס.\n📖 לילדים: פארק שעשועים בתוך בניין! 200 משחקים ומיני גולף שזוהר בחושך!\n💡 הקדישו כ-40 דקות, ואז הליכה של כ-5 דק׳ לאיש התלוי ל-18:45.",
+                icon: "🕹️",
+                link: "https://levelsprague.com/en/",
+                linkLabel: "אתר LEVELS",
+                mapQuery: "LEVELS Prague Národní",
+              },
+            ],
+          },
+          {
+            label: "מסלול ב׳ – Casino Ambassador",
+            icon: "🎰",
+            items: [
+              {
+                time: "17:15",
+                title: "🎰 Casino Ambassador",
+                description: "קזינו קלאסי בכיכר ואצלב – רולטה, בלאק ג׳ק, פוקר ומכונות",
+                details:
+                  "🕐 פתוח 24/7.\n📍 מיקום: Václavské náměstí 5, Praha 1 – בתוך מלון Ambassador, כ-15 דק׳ הליכה או מטרו מפסל קפקא (Národní → Můstek).\n🎫 כניסה חופשית; רישום חד-פעמי 250 CZK (משלמים רק בביקור הראשון).\n⚠️ חובה דרכון או תעודת זהות אירופית מקורית – לא עותק ולא תמונה!\n👔 לבוש: Smart casual (ג׳ינס וסניקרס בסדר). גיל 18+ בלבד.\n🎲 משחקים: רולטה אמריקאית, בלאק ג׳ק, טקסס הולדם, מכונות מזל.\n💡 סיימו ב-18:30 לפחות כדי להגיע בזמן לנקודת המפגש באיש התלוי (18:45).",
+                icon: "🎰",
+                link: "https://casinoambassador.cz/",
+                linkLabel: "אתר הקזינו",
+                mapQuery: "Casino Ambassador Prague Wenceslas Square",
+              },
+            ],
+          },
+        ],
       },
       {
         time: "18:45",
-        title: "האיש התלוי – פסל זיגמונד פרויד",
-        description: "Man Hanging Out – פסל דייוויד צ׳רני: איש תלוי מקורת גג!",
+        title: "📍 נקודת מפגש – האיש התלוי (פרויד)",
+        description: "כולם נפגשים כאן וממשיכים יחד – Man Hanging Out",
         details:
-          "🕐 בחוץ, 24/7, בחינם.\n📍 מיקום: רחוב Husova 36 – 5 דק׳ הליכה מ-LEVELS.\nדמות בגודל טבעי של זיגמונד פרויד תלויה ביד אחת מקורת גג! הוצב ב-1997 וגרם לאנשים להתקשר למשטרה – חשבו שמישהו עומד לקפוץ.\n📖 לילדים: חפשו למעלה – יש פסל של בנאדם שתלוי ביד אחת ונראה אמיתי!\n💡 קל לפספס – תסתכלו ימינה ולמעלה ברחוב Husova.",
+          "🕐 בחוץ, 24/7, בחינם.\n📍 מיקום: רחוב Husova 36 – 5 דק׳ הליכה מ-LEVELS או כ-10 דק׳ מכיכר ואצלב.\nדמות בגודל טבעי של זיגמונד פרויד תלויה ביד אחת מקורת גג! הוצב ב-1997 וגרם לאנשים להתקשר למשטרה – חשבו שמישהו עומד לקפוץ.\n📖 לילדים: חפשו למעלה – יש פסל של בנאדם שתלוי ביד אחת ונראה אמיתי!\n💡 קל לפספס – תסתכלו ימינה ולמעלה ברחוב Husova.",
         icon: "🎭",
         link: "https://en.wikipedia.org/wiki/Man_Hanging_Out",
         linkLabel: "מידע נוסף",
@@ -367,6 +418,8 @@ export const itinerary: DayPlan[] = [
     tips: [
       "🚂 חובה להזמין מקום ב-Výtopna מראש – vytopna.cz",
       "🗿 פסל קפקא מסתובב בשעה עגולה – להגיע ב-17:00 בדיוק! (יוצאים מהשוק ב-16:35)",
+      "🔀 אחרי קפקא: מסלול א׳ (לגו+LEVELS) או מסלול ב׳ (קזינו) – מפגש לכולם ב-18:45 באיש התלוי",
+      "🎰 מי שהולך ל-Casino Ambassador – חובה דרכון מקורי! גיל 18+",
       "⏰ שעון אסטרונומי – להגיע ב-18:55 לתפוס מקום לפני מופע 19:00!",
       "✡️ הרובע היהודי בערב: בתי הכנסת סגורים אבל האווירה קסומה וללא עומס תיירים",
       "🥐 Heimishe Trdelaich – Trdelník כשר בלב הרובע היהודי!",

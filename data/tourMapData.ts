@@ -222,6 +222,12 @@ export const mapAttractionSections: MapAttractionSection[] = [
         mapQuery: "LEVELS Prague Národní",
       },
       {
+        id: "casino-ambassador",
+        nameHe: "Casino Ambassador",
+        name: "Casino Ambassador Prague",
+        mapQuery: "Casino Ambassador Prague Wenceslas Square",
+      },
+      {
         id: "man-hanging",
         nameHe: "האיש התלוי (פרויד)",
         name: "Man Hanging Out – David Černý",
