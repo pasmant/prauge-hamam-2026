@@ -1,5 +1,5 @@
 export const groupInfo = {
-  totalParticipants: "25–30",
+  totalParticipants: "26",
   tripDates: "9–13 ביוני 2026",
   destination: "פראג, צ׳כיה",
   hotel: "Aquapalace Hotel Prague",
