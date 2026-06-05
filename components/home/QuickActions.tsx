@@ -12,6 +12,7 @@ import {
   CloudSun,
   MessageCircle,
 } from "lucide-react";
+import { WHATSAPP_GROUP_URL } from "@/data/group";
 
 const actions = [
   {
@@ -64,7 +65,7 @@ const actions = [
     lightColor: "bg-sky-50",
   },
   {
-    href: "https://wa.me/972500000000",
+    href: WHATSAPP_GROUP_URL,
     label: "וואטסאפ",
     icon: MessageCircle,
     color: "bg-green-600",

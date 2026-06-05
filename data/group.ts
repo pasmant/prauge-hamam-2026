@@ -1,3 +1,6 @@
+export const WHATSAPP_GROUP_URL =
+  "https://chat.whatsapp.com/G0rqUj62cytIHUG1wb8JhZ";
+
 export const groupInfo = {
   totalParticipants: "26",
   tripDates: "9–13 ביוני 2026",

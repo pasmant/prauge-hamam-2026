@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Phone, MessageCircle, Hotel, Heart } from "lucide-react";
+import { WHATSAPP_GROUP_URL } from "@/data/group";
 
 export function Footer() {
   return (
@@ -14,7 +15,7 @@ export function Footer() {
             <p className="text-slate-400 text-sm">
               הטיול המשפחתי | 9–13 ביוני 2026
             </p>
-            <p className="text-slate-400 text-sm">25–30 משתתפים</p>
+            <p className="text-slate-400 text-sm">26 משתתפים</p>
           </div>
 
           <div>
@@ -37,7 +38,7 @@ export function Footer() {
                 חירום אירופי: 112
               </a>
               <a
-                href="https://wa.me/972500000000"
+                href={WHATSAPP_GROUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-green-400 transition-colors"
