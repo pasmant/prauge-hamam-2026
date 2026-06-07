@@ -502,6 +502,17 @@ export const itinerary: DayPlan[] = [
         mapQuery: "Prague narrowest alley U Lužického semináře",
       },
       {
+        time: "13:10",
+        title: "💦 Peeing Characters – פסלי השתן (David Černý)",
+        description: "Piss / Proudy – שני פסלים ש«כותבים» במים לתוך בריכה בצורת צ׳כיה!",
+        details:
+          "🕐 פתוח תמיד, בחינם – בחצר מוזיאון קפקא.\n📍 מיקום: Cihelná 2b, Malá Strana – חצר Hergetova cihelna, ליד גשר קארל (כ-5 דק׳ מהסמטה הצרה).\nפסל/bronze fountain מ-2004 של דייוויד צ׳רני: שני דמויות ש«משתינות» לבריכה בצורת מפת צ׳כיה. המים «כותבים» ציטוטים מספרות צ׳כית – ואפשר לשלוח SMS (+420 724 370 770) והפסלים יכתבו את ההודעה שלכם!\n📖 לילדים: פסלים מצחיקים ש«משתינים» מים אמיתיים – אחד הדברים הכי מוזרים ומצולמים בפראג!\n💡 עצירה קצרה של 10–15 דק׳ לפני מעבר לגשר קארל.",
+        icon: "💦",
+        link: "https://en.wikipedia.org/wiki/Piss_(%C4%8Cern%C3%BD)",
+        linkLabel: "מידע נוסף",
+        mapQuery: "Peeing Characters Sculpture Franz Kafka Museum Cihelná Prague",
+      },
+      {
         time: "13:15",
         title: "🌉 גשר קארל",
         description: "Charles Bridge – הגשר האייקוני של פראג, חוצה את הוולטאבה!",
@@ -559,6 +570,7 @@ export const itinerary: DayPlan[] = [
       "🚣 Prague Venice Boat Trip – ממש בקצה גשר קארל, אין צורך לחפש!",
       "📚 קלמנטינום – לצלם את האולם הברוקי ולעלות למגדל!",
       "🚦 הסמטה הצרה: רוחב 50 ס״מ – שימו לב לרמזור!",
+      "💦 Peeing Characters – ליד מוזיאון קפקא, ממש לפני גשר קארל",
     ],
   },
 

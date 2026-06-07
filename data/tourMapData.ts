@@ -332,6 +332,12 @@ export const mapAttractionSections: MapAttractionSection[] = [
         mapQuery: "Prague narrowest alley U Lužického semináře",
       },
       {
+        id: "peeing-characters",
+        nameHe: "Peeing Characters (Piss / Proudy)",
+        name: "Peeing Characters Sculpture – David Černý",
+        mapQuery: "Peeing Characters Sculpture Franz Kafka Museum Cihelná Prague",
+      },
+      {
         id: "charles",
         nameHe: "גשר קארל",
         name: "Charles Bridge",
