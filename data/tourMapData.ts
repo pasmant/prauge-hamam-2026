@@ -344,6 +344,12 @@ export const mapAttractionSections: MapAttractionSection[] = [
         mapQuery: "Charles Bridge Prague",
       },
       {
+        id: "calvary",
+        nameHe: "Calvary Statue (Kalvárie)",
+        name: "Calvary Statue – Charles Bridge",
+        mapQuery: "Calvary statue Charles Bridge Prague",
+      },
+      {
         id: "venice",
         nameHe: "שייט Prague Venice",
         name: "Prague Venice Boat Trip",
