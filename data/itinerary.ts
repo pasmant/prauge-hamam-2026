@@ -1,3 +1,5 @@
+import { attractionDetailEnrichment } from "./itineraryDetailEnrichment";
+
 export interface TimelineBranchItem {
   time: string;
   title: string;
@@ -61,7 +63,37 @@ function dayMapUrl(lat: number, lng: number, zoom: number) {
 
 export const MAIN_MAP_EMBED = MAP_BASE;
 
-export const itinerary: DayPlan[] = [
+function enrichTimelineItem(item: TimelineItem): TimelineItem {
+  const enrichedDetails = attractionDetailEnrichment[item.title];
+  const merged: TimelineItem = enrichedDetails
+    ? { ...item, details: enrichedDetails }
+    : item;
+
+  if (!merged.branches) return merged;
+
+  return {
+    ...merged,
+    branches: merged.branches.map((branch) => ({
+      ...branch,
+      items: branch.items.map((branchItem) => {
+        const branchDetails = attractionDetailEnrichment[branchItem.title];
+        return branchDetails
+          ? { ...branchItem, details: branchDetails }
+          : branchItem;
+      }),
+    })),
+  };
+}
+
+function enrichItinerary(days: DayPlan[]): DayPlan[] {
+  return days.map((day) =>
+    day.id === 2 || day.id === 3
+      ? { ...day, timeline: day.timeline.map(enrichTimelineItem) }
+      : day
+  );
+}
+
+const rawItinerary: DayPlan[] = [
   // ─── DAY 1 ── 9 June ─── Airport → Aquapalace ───
   {
     id: 1,
@@ -167,7 +199,7 @@ export const itinerary: DayPlan[] = [
         title: "🏊 פארק המים – בוקר שלם!",
         description: "5 שעות בפארק המים הגדול במרכז אירופה לפני היציאה לעיר",
         details:
-          "נצלו את הבוקר לכל המגלשות!\n🎢 ארמון ההרפתקאות: Crazy Tube (350 מ׳!), Spacebowl, Kamikaze, Magic Tube VR\n🏴‍☠️ ארמון האוצרות: ספינת פיראטים, בריכת גלים, תותחי מים, VR אווטאר\n🧘 ארמון הרגיעה: ג׳קוזי 37°C, נהר שקט, בריכת שחייה\n🌊 נהר פראי חיצוני 450 מ׳ – לא לפספס!",
+          "🕐 פארק המים: 09:00–22:00 (יוני). כניסה כלולה בלינה במלון!\n📍 בתוך Aquapalace Hotel – יורדים מהחדרים בחלוקים (חינם לאורחים).\n⏱️ מומלץ: 4–5 שעות לפני היציאה לעיר.\n\n✨ שלושה «ארמונות» – כל אחד אווירה אחרת:\n🎢 ארמון ההרפתקאות: Crazy Tube – מגלשה 350 מ׳ (הארוכה בצ׳כיה!), Spacebowl, Kamikaze, Magic Tube VR, מגלשות משפחתיות.\n🏴‍☠️ ארמון האוצרות: ספינת פיראטים, בריכת גלים, תותחי מים, VR Avatar, בריכות לילדים קטנים.\n🧘 ארמון הרגיעה: ג׳קוזי 37°C, נהר איטי, בריכת שחייה, סילוני מסאז׳.\n🌊 בחוץ: נהר פראי 450 מ׳ – מגלשות ובריכות תחת השמיים (בקיץ חובה!).\n\n📜 פארק המים הגדול במרכז אירופה – נפתח ב-2005, כ-30,000 מ״ר. מעל 12 מגלשות ו-8 בריכות.\n\n📖 לילדים: כרטיס צמיד = הכל! Crazy Tube לגיל 12+ (גובה מינימום). לקטנים – ארמון האוצרות.\n💡 הביאו: בגד ים, כפכפים, מגבת (חינם מהמלון), קרם הגנה. ארוחת צהריים בפארק או במלון לפני 13:30.\n⚠️ שמרו כוחות – אחר הצהריים יום ארוך בעיר!",
         icon: "🏊",
         link: "/hotel",
         linkLabel: "פרטי הפארק",
@@ -186,7 +218,7 @@ export const itinerary: DayPlan[] = [
         title: "🚂 Výtopna Railway Restaurant – ארוחת צהריים",
         description: "המסעדה שבה רכבות מיניאטוריות מגישות את האוכל לשולחן!",
         details:
-          "🕐 פתוח: 11:00–23:00 כל יום.\n⚠️ חובה להזמין מקום מראש – המקום תמיד מלא! vytopna.cz.\n📍 מיקום: Náměstí Republiky 8, Praha 1.\nרכבות מיניאטוריות נוסעות על מסילות ברחבי המסעדה ומגישות משקאות והזמנות ישירות לשולחן! מערכות רכבות עם גשרים, מנהרות ותחנות. האוכל: בורגרים, שניצלים, פסטות ותפריט ילדים עשיר.\n📖 לילדים: כל שולחן הוא תחנת רכבת עם כפתור שקורא לרכבת!\n💡 טיפ: שבו ליד חלון לראות את כל המסילות.",
+          "🕐 פתוח: 11:00–23:00 כל יום.\n🎫 אין דמי כניסה – משלמים על האוכל.\n⚠️ חובה להזמין מקום מראש – המקום תמיד מלא! vytopna.cz או טלפון.\n📍 Náměstí Republiky 8, Praha 1 – ליד כיכר הרפובליקה וקניון Palladium. מטרו B: Náměstí Republiky.\n⏱️ משך: 1–1.5 שעות לארוחה.\n\n📜 היסטוריה: Výtopna («תחנת הרכבת») נפתחה ב-2009. הרעיון: מסעדה שבה רכבות מיניאטוריות אמיתיות נוסעות על 400+ מטר מסילות ומגישות משקאות ומנות לשולחן – בהשראת מסעדות רכבת ביפן.\n\n✨ מה לראות:\n• מסילות, גשרים, מנהרות ותחנות ברחבי המסעדה\n• כפתור על כל שולחן – לוחצים והרכבת מגיעה!\n• מטבח: בורגרים, שניצלים, פסטות, מרקים, סלטים, תפריט ילדים\n• קינוחים ושייקים\n\n📖 לילדים: כל שולחן = תחנת רכבת! מי לוחץ על הכפתור קודם?\n📸 שבו ליד חלון או מסילה מרכזית – רואים את כל הרשת.\n💡 הזמינו מראש! בלי הזמנה – סיכוי גבוה ללא מקום. אחרי הארוחה – 10 דק׳ הליכה לשוק האוול.",
         icon: "🚂",
         link: "https://www.vytopna.cz/en",
         linkLabel: "הזמנת מקום",
@@ -832,3 +864,5 @@ export const itinerary: DayPlan[] = [
     ],
   },
 ];
+
+export const itinerary: DayPlan[] = enrichItinerary(rawItinerary);
