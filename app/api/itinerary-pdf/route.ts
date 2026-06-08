@@ -1,6 +1,8 @@
 import { generateItineraryPdfBuffer } from "@/lib/generateItineraryPdf";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
