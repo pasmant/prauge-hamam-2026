@@ -1,11 +1,9 @@
 import {
   Document,
-  Font,
   Page,
   StyleSheet,
   Text,
   View,
-  pdf,
 } from "@react-pdf/renderer";
 import {
   itinerary,
@@ -15,25 +13,6 @@ import {
   type TimelineItem,
 } from "@/data/itinerary";
 import { groupInfo } from "@/data/group";
-
-const FONT_REGULAR =
-  "https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-hebrew@5.2.8/files/noto-sans-hebrew-hebrew-400-normal.woff";
-const FONT_BOLD =
-  "https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-hebrew@5.2.8/files/noto-sans-hebrew-hebrew-700-normal.woff";
-
-let fontsRegistered = false;
-
-function registerFonts() {
-  if (fontsRegistered) return;
-  Font.register({
-    family: "NotoSansHebrew",
-    fonts: [
-      { src: FONT_REGULAR, fontWeight: 400 },
-      { src: FONT_BOLD, fontWeight: 700 },
-    ],
-  });
-  fontsRegistered = true;
-}
 
 const categoryLabels: Record<FreeDayOption["category"], string> = {
   attraction: "אטרקציות ופעילויות",
@@ -90,7 +69,6 @@ const styles = StyleSheet.create({
   },
   dayHeaderLabel: {
     fontSize: 9,
-    opacity: 0.9,
     marginBottom: 2,
   },
   dayHeaderTitle: {
@@ -100,7 +78,6 @@ const styles = StyleSheet.create({
   dayHeaderSubtitle: {
     fontSize: 10,
     marginTop: 2,
-    opacity: 0.95,
   },
   timelineItem: {
     marginBottom: 12,
@@ -207,7 +184,7 @@ function BranchItemPdf({ item }: { item: TimelineBranchItem }) {
   );
 }
 
-function TimelineItemPdf({ item }: { item: TimelineItem }) {
+function TimelineItemPdf({ item, index }: { item: TimelineItem; index: number }) {
   return (
     <View style={styles.timelineItem}>
       <Text style={styles.timeBadge}>
@@ -222,12 +199,15 @@ function TimelineItemPdf({ item }: { item: TimelineItem }) {
         <Text style={styles.itemDetails}>{item.details}</Text>
       ) : null}
       {item.branches?.map((branch) => (
-        <View key={branch.label} style={styles.branchBox}>
+        <View key={`${index}-${branch.label}`} style={styles.branchBox}>
           <Text style={styles.branchLabel}>
             {branch.icon} {branch.label}
           </Text>
-          {branch.items.map((branchItem) => (
-            <BranchItemPdf key={`${branchItem.time}-${branchItem.title}`} item={branchItem} />
+          {branch.items.map((branchItem, branchIndex) => (
+            <BranchItemPdf
+              key={`${branchIndex}-${branchItem.time}-${branchItem.title}`}
+              item={branchItem}
+            />
           ))}
         </View>
       ))}
@@ -244,7 +224,7 @@ function DaySection({ day }: { day: DayPlan }) {
     .filter((g) => g.items.length > 0);
 
   return (
-    <View break={day.id > 1}>
+    <View>
       <View style={styles.dayHeader}>
         <Text style={styles.dayHeaderLabel}>
           יום {day.id} | {day.date}
@@ -255,8 +235,8 @@ function DaySection({ day }: { day: DayPlan }) {
         <Text style={styles.dayHeaderSubtitle}>{day.subtitle}</Text>
       </View>
 
-      {day.timeline.map((item, i) => (
-        <TimelineItemPdf key={`${item.time}-${i}`} item={item} />
+      {day.timeline.map((item, index) => (
+        <TimelineItemPdf key={`${day.id}-${index}-${item.time}`} item={item} index={index} />
       ))}
 
       {groupedFreeDay.length > 0 ? (
@@ -300,7 +280,7 @@ function DaySection({ day }: { day: DayPlan }) {
   );
 }
 
-function ItineraryPdfDocument() {
+export function ItineraryPdfDocument() {
   return (
     <Document
       title="תוכנית הטיול – פראג 2026"
@@ -328,31 +308,18 @@ function ItineraryPdfDocument() {
         />
       </Page>
 
-      <Page size="A4" style={styles.page} wrap>
-        {itinerary.map((day) => (
-          <DaySection key={day.id} day={day} />
-        ))}
-        <Text
-          style={styles.pageNumber}
-          render={({ pageNumber, totalPages }) =>
-            `עמוד ${pageNumber} מתוך ${totalPages}`
-          }
-          fixed
-        />
-      </Page>
+      {itinerary.map((day) => (
+        <Page key={day.id} size="A4" style={styles.page} wrap>
+          <DaySection day={day} />
+          <Text
+            style={styles.pageNumber}
+            render={({ pageNumber, totalPages }) =>
+              `עמוד ${pageNumber} מתוך ${totalPages}`
+            }
+            fixed
+          />
+        </Page>
+      ))}
     </Document>
   );
-}
-
-export async function downloadItineraryPdf() {
-  registerFonts();
-  const blob = await pdf(<ItineraryPdfDocument />).toBlob();
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "prague-hamam-2026-itinerary.pdf";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
 }

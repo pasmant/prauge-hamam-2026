@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
+    "@fontsource/noto-sans-hebrew": "^5.2.8",
     "@react-pdf/renderer": "^4.5.1",
     "@supabase/supabase-js": "^2.105.4",
     "class-variance-authority": "^0.7.1",
