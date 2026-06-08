@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { CalendarDays, ChevronLeft } from "lucide-react";
 import { itinerary } from "@/data/itinerary";
+import { DownloadItineraryPdfButton } from "@/components/itinerary/DownloadItineraryPdfButton";
 
 export default function ItineraryPage() {
   return (
@@ -13,8 +14,10 @@ export default function ItineraryPage() {
           <CalendarDays className="w-8 h-8 text-green-500" />
           תוכנית הטיול
         </h1>
-        <p className="text-slate-500 mb-8">9–13 ביוני 2026 | 5 ימים בפראג</p>
+        <p className="text-slate-500 mb-4">9–13 ביוני 2026 | 5 ימים בפראג</p>
       </motion.div>
+
+      <DownloadItineraryPdfButton />
 
       <div className="space-y-4">
         {itinerary.map((day, i) => (
